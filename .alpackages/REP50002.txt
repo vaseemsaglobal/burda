@@ -1,0 +1,1296 @@
+OBJECT Report 50002 FORM 50 BIS
+{
+  OBJECT-PROPERTIES
+  {
+    Date=03/21/21;
+    Time=[ 8:10:16 PM];
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnPreReport=BEGIN
+
+                  IF CompanyInfo.GET THEN BEGIN
+                    FOR i := 1 TO STRLEN(CompanyInfo."VAT Registration No.") DO
+                      CID[i] := COPYSTR(CompanyInfo."VAT Registration No.",i,1);
+                    //KKE : #004 +
+                    IF CompanyInfo."Phone No." <> '' THEN
+                      CompanyPhone := 'Tel. ' + CompanyInfo."Phone No.";
+                    //KKE : #004 -
+                    CompanyInfo.CALCFIELDS(Picture);
+                  END;
+
+                  //KKE : #004 +
+                  FOR i := 1 TO STRLEN(ConductVATID) DO
+                    CCID[i] := COPYSTR(ConductVATID,i,1);
+
+                  FOR i := 1 TO STRLEN(ConductID) DO
+                    ID2[i] := COPYSTR(ConductID,i,1);
+
+                  FOR i := 1 TO STRLEN(EmployerAccount) DO
+                    EID[i] := COPYSTR(EmployerAccount,i,1);
+
+                  FOR i := 1 TO STRLEN(SocialID) DO
+                    SoID[i] := COPYSTR(SocialID,i,1);
+                  //KKE : #004 -
+
+                  IF NumberOfCopy > 4 THEN
+                    ERROR('Number of copies shouldnot be more than 4.');
+
+                  GLSetup.FIND('-');
+                  //TSA003
+                  CLEAR(WHTTerm);
+                  CASE PaymentOption OF
+                    0 : WHTTerm[1] := 'P';
+                    1 : WHTTerm[2] := 'P';
+                    2 : WHTTerm[3] := 'P';
+                    3 : WHTTerm[4] := 'P';
+                  END;
+                  //TSA003
+                END;
+
+  }
+  DATASET
+  {
+    { 1170000000;;DataItem;                  ;
+               DataItemTable=Table28044;
+               DataItemTableView=SORTING(Document Type,Posting Date,WHT Certificate No.)
+                                 WHERE(Transaction Type=CONST(Purchase),
+                                       Document Type=CONST(Payment),
+                                       Amount=FILTER(<>0),
+                                       Cancelled=CONST(No));
+               OnAfterGetRecord=BEGIN
+
+                                  IF NewDocNo <> WHTEntry."WHT Certificate No." THEN BEGIN
+                                    NewDocNo := "WHT Certificate No.";
+                                    CLEAR(Name);
+                                    CLEAR(Address);
+                                    CLEAR(Phone);  //KKE : #004
+                                    CLEAR(VAT);
+                                    CLEAR(WHTGroup);
+                                    CLEAR(WHTPostingDate);
+                                    CLEAR(WHTExpenseText);
+                                    CLEAR(WHTBaseAmtLCYExcVAT);
+                                    CLEAR(WHTAmtLCY);
+                                    CLEAR(TotWHTBaseAmtLCYExcVAT);
+                                    CLEAR(TotWHTAmtLCY);
+                                    CLEAR(PostingDate);
+                                  END;
+
+                                  IF "Actual Vendor No." <> '' THEN
+                                    Vendor.GET("Actual Vendor No.")
+                                  ELSE
+                                    Vendor.GET("Bill-to/Pay-to No.");
+
+                                  //KKE : #002 +
+                                  IF "Dummy Vendor" AND PurchInvHeader.GET("Document No.") THEN BEGIN
+                                    IF PurchInvHeader."Pay-to Name (Thai)" <> '' THEN BEGIN
+                                      Name := PurchInvHeader."Pay-to Name (Thai)";
+                                      Address := PurchInvHeader."Pay-to Address (Thai)";
+                                    END ELSE BEGIN
+                                      Name := PurchInvHeader."Pay-to Name" + PurchInvHeader."Pay-to Name 2";
+                                      Address := PurchInvHeader."Pay-to Address" + '  ' +
+                                                 PurchInvHeader."Pay-to Address 2" + '  ' + PurchInvHeader."Pay-to Address 3";
+                                    END;
+                                    FOR i := 1 TO STRLEN("VAT Registration No.(Dummy)") DO
+                                      VAT[i] := COPYSTR("VAT Registration No.(Dummy)",i,1);
+                                  END ELSE BEGIN
+                                  //KKE : #002 -
+                                    IF Vendor."Name (Thai)" <> '' THEN BEGIN
+                                      Name := Vendor."Name (Thai)";
+                                      Address := Vendor."Address (Thai)";
+                                    END ELSE BEGIN
+                                      Name := Vendor.Name + Vendor."Name 2";
+                                      Address := Vendor.Address + ' ' + Vendor."Address 2" + ' ' + Vendor."Address 3";
+                                    END;
+                                    //KKE : #004 +
+                                    IF Vendor."Phone No." <> '' THEN
+                                      Phone := 'Tel. ' + Vendor."Phone No.";
+                                    FOR i := 1 TO 13 DO
+                                      ID3[i] := COPYSTR(Vendor."ID No.",i,1);
+                                    //KKE : #004 -
+                                    FOR i := 1 TO STRLEN(Vendor."VAT Registration No.") DO
+                                      VAT[i] := COPYSTR(Vendor."VAT Registration No.",i,1);
+                                  END;
+
+                                  IF "WHT Report" = "WHT Report"::"Por Ngor Dor 3" THEN
+                                    WHTGroup[1] := 'P'
+                                  ELSE IF "WHT Report" = "WHT Report"::"Por Ngor Dor 53" THEN
+                                    WHTGroup[2] := 'P';
+
+                                  IF WHTRevType.GET("WHT Revenue Type") THEN BEGIN
+                                    IF WHTRevType.Sequence = 0 THEN
+                                      CurrReport.SKIP;
+                                    i := WHTRevType.Sequence;
+                                    IF (i = 99) OR (i = 19) THEN BEGIN  //KKE : #004
+                                      i := 19;
+                                      WHTExpenseText := WHTRevType.Description;
+                                      //WHTExpenseText := 'ค่าเช่า';
+                                    END;
+                                    WHTPostingDate[i] := "Posting Date";
+                                    PostingDate := "Posting Date";
+                                    //MESSAGE(FORMAT(WHTPostingDate[i]));
+                                    WHTAmtLCY[i] := WHTAmtLCY[i] + Amount;
+                                    TotWHTAmtLCY := TotWHTAmtLCY + Amount;
+                                    WHTBaseAmtLCYExcVAT[i] := WHTBaseAmtLCYExcVAT[i] + Base;
+                                    TotWHTBaseAmtLCYExcVAT := TotWHTBaseAmtLCYExcVAT + Base;
+                                    //>>VAH
+                                    WHTAmtLCYT[i] := BlankZero(WHTAmtLCY[i]);
+                                    //MESSAGE(WHTAmtLCYT[i]);
+                                    TotWHTBaseAmtLCYExcVATT := BlankZero(TotWHTBaseAmtLCYExcVAT);
+                                    WHTBaseAmtLCYExcVATT[i] := BlankZero(ROUND(WHTBaseAmtLCYExcVAT[i],0.01));
+                                    //<<VAH
+                                  END;
+
+                                  WHTSlipNo := "WHT Certificate No.";
+
+                                  IF PrintTest THEN
+                                    TestText := "Original Document No." + '/ ' + "WHT Certificate No.";
+                                END;
+
+               ReqFilterFields=Transaction Type,Document Type,Document No.,WHT Certificate No. }
+
+    { 1170000001;1;DataItem;                 ;
+               DataItemTable=Table2000000026;
+               DataItemTableView=SORTING(Number)
+                                 WHERE(Number=FILTER(1..4));
+               OnPreDataItem=BEGIN
+
+                               IF NewDocNo = '' THEN
+                                 NewDocNo := "WHT Entry"."WHT Certificate No.";
+
+                               WHTEntry.COPY("WHT Entry");
+                               IF WHTEntry.NEXT <> 0 THEN BEGIN
+                                 IF NewDocNo = WHTEntry."WHT Certificate No." THEN
+                                   CurrReport.BREAK;
+                               END;
+                             END;
+
+               OnAfterGetRecord=BEGIN
+
+                                  IF Number > NumberOfCopy THEN
+                                    CurrReport.BREAK;
+
+                                  WHTAmtLCYText := FormatNoThaiText(TotWHTAmtLCY);
+                                  IF WHTAmtLCYText <> '' THEN
+                                    WHTAmtLCYText := '(' + WHTAmtLCYText + ')';
+                                END;
+                                 }
+
+    { 1170000002;2;Column;FormBookNo         ;
+               SourceExpr=FormBookNo }
+
+    { 1170000003;2;Column;WHTSlipNo          ;
+               SourceExpr=WHTSlipNo }
+
+    { 1170000004;2;Column;i1                 ;
+               SourceExpr=ID1[1] }
+
+    { 1170000005;2;Column;i2                 ;
+               SourceExpr=ID1[2] }
+
+    { 1170000006;2;Column;i3                 ;
+               SourceExpr=ID1[3] }
+
+    { 1170000007;2;Column;i4                 ;
+               SourceExpr=ID1[4] }
+
+    { 1170000008;2;Column;i5                 ;
+               SourceExpr=ID1[5] }
+
+    { 1170000009;2;Column;i6                 ;
+               SourceExpr=ID1[6] }
+
+    { 1170000010;2;Column;i7                 ;
+               SourceExpr=ID1[7] }
+
+    { 1170000011;2;Column;i8                 ;
+               SourceExpr=ID1[8] }
+
+    { 1170000012;2;Column;i9                 ;
+               SourceExpr=ID1[9] }
+
+    { 1170000013;2;Column;i10                ;
+               SourceExpr=ID1[10] }
+
+    { 1170000014;2;Column;i11                ;
+               SourceExpr=ID1[11] }
+
+    { 1170000015;2;Column;i12                ;
+               SourceExpr=ID1[12] }
+
+    { 1170000016;2;Column;i13                ;
+               SourceExpr=ID1[13] }
+
+    { 1170000017;2;Column;CompanyInfo_Name   ;
+               SourceExpr=CompanyInfo.Name }
+
+    { 1170000018;2;Column;CompanyInfo_Address_CompanyInfo_Address2CompanyInfo_Address3CompanyPhone;
+               SourceExpr=CompanyInfo.Address + ' ' + CompanyInfo."Address 2" + ' ' + CompanyInfo."Address 3" + ' ' + CompanyPhone }
+
+    { 1170000019;2;Column;C1                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000020;2;Column;C2                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000021;2;Column;C3                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000022;2;Column;C4                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000023;2;Column;C5                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000024;2;Column;C6                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000025;2;Column;C7                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000026;2;Column;C8                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000027;2;Column;C9                 ;
+               SourceExpr=CID[1] }
+
+    { 1170000028;2;Column;C10                ;
+               SourceExpr=CID[1] }
+
+    { 1170000029;2;Column;C11                ;
+               SourceExpr=CID[1] }
+
+    { 1170000030;2;Column;C12                ;
+               SourceExpr=CID[1] }
+
+    { 1170000031;2;Column;C13                ;
+               SourceExpr=CID[1] }
+
+    { 1170000032;2;Column;ConductName        ;
+               SourceExpr=ConductName }
+
+    { 1170000033;2;Column;ConductAddress     ;
+               SourceExpr=ConductAddress }
+
+    { 1170000034;2;Column;j1                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000035;2;Column;j2                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000036;2;Column;j3                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000037;2;Column;j4                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000038;2;Column;j5                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000039;2;Column;j6                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000040;2;Column;j7                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000041;2;Column;j8                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000042;2;Column;j9                 ;
+               SourceExpr=ID2[1] }
+
+    { 1170000043;2;Column;j10                ;
+               SourceExpr=ID2[1] }
+
+    { 1170000044;2;Column;j11                ;
+               SourceExpr=ID2[1] }
+
+    { 1170000045;2;Column;j12                ;
+               SourceExpr=ID2[1] }
+
+    { 1170000046;2;Column;j13                ;
+               SourceExpr=ID2[1] }
+
+    { 1170000047;2;Column;d1                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000048;2;Column;d2                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000049;2;Column;d3                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000050;2;Column;d4                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000051;2;Column;d5                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000052;2;Column;d6                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000053;2;Column;d7                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000054;2;Column;d8                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000055;2;Column;d9                 ;
+               SourceExpr=CCID[1] }
+
+    { 1170000056;2;Column;d10                ;
+               SourceExpr=CCID[1] }
+
+    { 1170000057;2;Column;d11                ;
+               SourceExpr=CCID[1] }
+
+    { 1170000058;2;Column;d12                ;
+               SourceExpr=CCID[1] }
+
+    { 1170000059;2;Column;d13                ;
+               SourceExpr=CCID[1] }
+
+    { 1170000060;2;Column;k1                 ;
+               SourceExpr=ID3[1] }
+
+    { 1170000061;2;Column;k2                 ;
+               SourceExpr=ID3[2] }
+
+    { 1170000062;2;Column;k3                 ;
+               SourceExpr=ID3[3] }
+
+    { 1170000063;2;Column;k4                 ;
+               SourceExpr=ID3[4] }
+
+    { 1170000064;2;Column;k5                 ;
+               SourceExpr=ID3[5] }
+
+    { 1170000065;2;Column;k6                 ;
+               SourceExpr=ID3[6] }
+
+    { 1170000066;2;Column;k7                 ;
+               SourceExpr=ID3[7] }
+
+    { 1170000067;2;Column;k8                 ;
+               SourceExpr=ID3[8] }
+
+    { 1170000068;2;Column;k9                 ;
+               SourceExpr=ID3[9] }
+
+    { 1170000069;2;Column;k10                ;
+               SourceExpr=ID3[10] }
+
+    { 1170000070;2;Column;k11                ;
+               SourceExpr=ID3[11] }
+
+    { 1170000071;2;Column;k12                ;
+               SourceExpr=ID3[12] }
+
+    { 1170000072;2;Column;k13                ;
+               SourceExpr=ID3[13] }
+
+    { 1170000073;2;Column;v1                 ;
+               SourceExpr=VAT[1] }
+
+    { 1170000074;2;Column;v2                 ;
+               SourceExpr=VAT[2] }
+
+    { 1170000075;2;Column;v3                 ;
+               SourceExpr=VAT[3] }
+
+    { 1170000076;2;Column;v4                 ;
+               SourceExpr=VAT[4] }
+
+    { 1170000077;2;Column;v5                 ;
+               SourceExpr=VAT[5] }
+
+    { 1170000078;2;Column;v6                 ;
+               SourceExpr=VAT[6] }
+
+    { 1170000079;2;Column;v7                 ;
+               SourceExpr=VAT[7] }
+
+    { 1170000080;2;Column;v8                 ;
+               SourceExpr=VAT[8] }
+
+    { 1170000081;2;Column;v9                 ;
+               SourceExpr=VAT[9] }
+
+    { 1170000082;2;Column;v10                ;
+               SourceExpr=VAT[10] }
+
+    { 1170000083;2;Column;v11                ;
+               SourceExpr=VAT[11] }
+
+    { 1170000084;2;Column;v12                ;
+               SourceExpr=VAT[12] }
+
+    { 1170000085;2;Column;v13                ;
+               SourceExpr=VAT[13] }
+
+    { 1170000086;2;Column;WHTPDate1          ;
+               SourceExpr=FORMAT(WHTPostingDate[1]) }
+
+    { 1170000087;2;Column;WHTPDate2          ;
+               SourceExpr=FORMAT(WHTPostingDate[2]) }
+
+    { 1170000088;2;Column;WHTPDate3          ;
+               SourceExpr=FORMAT(WHTPostingDate[3]) }
+
+    { 1170000089;2;Column;WHTPDate4          ;
+               SourceExpr=FORMAT(WHTPostingDate[4]) }
+
+    { 1170000090;2;Column;WHTPDate5          ;
+               SourceExpr=FORMAT(WHTPostingDate[5]) }
+
+    { 1170000091;2;Column;WHTPDate6          ;
+               SourceExpr=FORMAT(WHTPostingDate[6]) }
+
+    { 1170000092;2;Column;WHTPDate7          ;
+               SourceExpr=FORMAT(WHTPostingDate[7]) }
+
+    { 1170000093;2;Column;WHTPDate8          ;
+               SourceExpr=FORMAT(WHTPostingDate[8]) }
+
+    { 1170000094;2;Column;WHTPDate9          ;
+               SourceExpr=FORMAT(WHTPostingDate[9]) }
+
+    { 1170000095;2;Column;WHTPDat10          ;
+               SourceExpr=FORMAT(WHTPostingDate[10]) }
+
+    { 1170000096;2;Column;WHTPDat11          ;
+               SourceExpr=FORMAT(WHTPostingDate[11]) }
+
+    { 1170000097;2;Column;WHTPDat12          ;
+               SourceExpr=FORMAT(WHTPostingDate[12]) }
+
+    { 1170000098;2;Column;WHTPDat13          ;
+               SourceExpr=FORMAT(WHTPostingDate[13]) }
+
+    { 1170000099;2;Column;WHTPDat14          ;
+               SourceExpr=WHTPostingDate[14] }
+
+    { 1170000100;2;Column;WHTPDat15          ;
+               SourceExpr=WHTPostingDate[15] }
+
+    { 1170000101;2;Column;WHTPDat16          ;
+               SourceExpr=WHTPostingDate[16] }
+
+    { 1170000102;2;Column;WHTPDat17          ;
+               SourceExpr=WHTPostingDate[17] }
+
+    { 1170000103;2;Column;WHTPDat18          ;
+               SourceExpr=WHTPostingDate[18] }
+
+    { 1170000104;2;Column;WHTPDat19          ;
+               SourceExpr=WHTPostingDate[19] }
+
+    { 1170000105;2;Column;WHTAmtV1           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[1] }
+
+    { 1170000106;2;Column;WHTAmtV2           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[2] }
+
+    { 1170000107;2;Column;WHTAmtV3           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[3] }
+
+    { 1170000108;2;Column;WHTAmtV4           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[4] }
+
+    { 1170000109;2;Column;WHTAmtV5           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[5] }
+
+    { 1170000110;2;Column;WHTAmtV6           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[6] }
+
+    { 1170000111;2;Column;WHTAmtV7           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[7] }
+
+    { 1170000112;2;Column;WHTAmtV8           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[8] }
+
+    { 1170000113;2;Column;WHTAmtV9           ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[9] }
+
+    { 1170000114;2;Column;WHTAmtV10          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[10] }
+
+    { 1170000115;2;Column;WHTAmtV11          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[11] }
+
+    { 1170000116;2;Column;WHTAmtV12          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[12] }
+
+    { 1170000117;2;Column;WHTAmtV13          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[13] }
+
+    { 1170000118;2;Column;WHTAmtV14          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[14] }
+
+    { 1170000119;2;Column;WHTAmtV15          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[15] }
+
+    { 1170000120;2;Column;WHTAmtV16          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[16] }
+
+    { 1170000121;2;Column;WHTAmtV17          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[17] }
+
+    { 1170000122;2;Column;WHTAmtV18          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[18] }
+
+    { 1170000123;2;Column;WHTAmtV19          ;
+               SourceExpr=WHTBaseAmtLCYExcVATT[19] }
+
+    { 1170000124;2;Column;WHAmLC1            ;
+               SourceExpr=WHTAmtLCYT[1] }
+
+    { 1170000125;2;Column;WHAmLC2            ;
+               SourceExpr=WHTAmtLCYT[2] }
+
+    { 1170000126;2;Column;WHAmLC3            ;
+               SourceExpr=WHTAmtLCYT[3] }
+
+    { 1170000127;2;Column;WHAmLC4            ;
+               SourceExpr=WHTAmtLCYT[4] }
+
+    { 1170000128;2;Column;WHAmLC5            ;
+               SourceExpr=WHTAmtLCYT[5] }
+
+    { 1170000129;2;Column;WHAmLC6            ;
+               SourceExpr=WHTAmtLCYT[6] }
+
+    { 1170000130;2;Column;WHAmLC7            ;
+               SourceExpr=WHTAmtLCYT[7] }
+
+    { 1170000131;2;Column;WHAmLC8            ;
+               SourceExpr=WHTAmtLCYT[8] }
+
+    { 1170000132;2;Column;WHAmLC9            ;
+               SourceExpr=WHTAmtLCYT[9] }
+
+    { 1170000133;2;Column;WHAmLC10           ;
+               SourceExpr=WHTAmtLCYT[10] }
+
+    { 1170000134;2;Column;WHAmLC11           ;
+               SourceExpr=WHTAmtLCYT[11] }
+
+    { 1170000135;2;Column;WHAmLC12           ;
+               SourceExpr=WHTAmtLCYT[12] }
+
+    { 1170000136;2;Column;WHAmLC13           ;
+               SourceExpr=WHTAmtLCYT[13] }
+
+    { 1170000137;2;Column;WHAmLC14           ;
+               SourceExpr=WHTAmtLCYT[14] }
+
+    { 1170000138;2;Column;WHAmLC15           ;
+               SourceExpr=WHTAmtLCYT[15] }
+
+    { 1170000139;2;Column;WHAmLC16           ;
+               SourceExpr=WHTAmtLCYT[16] }
+
+    { 1170000140;2;Column;WHAmLC17           ;
+               SourceExpr=WHTAmtLCYT[17] }
+
+    { 1170000141;2;Column;WHAmLC18           ;
+               SourceExpr=WHTAmtLCYT[18] }
+
+    { 1170000142;2;Column;WHAmLC19           ;
+               SourceExpr=WHTAmtLCYT[19] }
+
+    { 1170000143;2;Column;TotWHTAmtV         ;
+               SourceExpr=TotWHTBaseAmtLCYExcVAT }
+
+    { 1170000144;2;Column;TotWHTAmtLCY       ;
+               SourceExpr=TotWHTAmtLCY }
+
+    { 1170000145;2;Column;WHTAmtLCYText      ;
+               SourceExpr=WHTAmtLCYText }
+
+    { 1170000146;2;Column;PFundNo            ;
+               SourceExpr=PFundNo }
+
+    { 1170000147;2;Column;SocialAmt          ;
+               SourceExpr=SocialAmt }
+
+    { 1170000148;2;Column;PFundAmt           ;
+               SourceExpr=PFundAmt }
+
+    { 1170000149;2;Column;PostingDate        ;
+               SourceExpr=FORMAT(PostingDate) }
+
+  }
+  REQUESTPAGE
+  {
+    PROPERTIES
+    {
+      SaveValues=Yes;
+    }
+    CONTROLS
+    {
+      { 1170000000;;Container;
+                  Name=Container;
+                  ContainerType=ContentArea }
+
+      { 1170000005;1;Group  ;
+                  GroupType=Group }
+
+      { 1170000001;2;Field  ;
+                  Name=Test Report;
+                  SourceExpr=PrintTest }
+
+      { 1170000002;2;Field  ;
+                  Name=Print Form 50 BIS Book No.;
+                  SourceExpr=FormBookNo }
+
+      { 1170000003;2;Field  ;
+                  Name=Number of copies;
+                  SourceExpr=NumberOfCopy }
+
+      { 1170000004;2;Field  ;
+                  CaptionML=ENU=พิมพ์บับที่ (Heading Print);
+                  SourceExpr=HeadingPrint }
+
+      { 1170000006;2;Field  ;
+                  CaptionML=ENU=<เงินสะสมจ่ายเข้ากองทุนสำรองเลี้ยงชีพใบอนุญาตเลขที่>;
+                  SourceExpr=[ PFundNo] }
+
+      { 1170000007;2;Field  ;
+                  CaptionML=ENU=จำนวนเงิน;
+                  SourceExpr=PFundAmt }
+
+      { 1170000008;2;Field  ;
+                  CaptionML=ENU=เงินสมทบเข้ากองทุนประกันสังคม จำนวนเงิน;
+                  SourceExpr=SocialAmt }
+
+      { 1170000009;2;Field  ;
+                  CaptionML=ENU=เลขที่บัญชีนายจ้าง;
+                  SourceExpr=EmployerAccount }
+
+      { 1170000010;2;Field  ;
+                  CaptionML=ENU=เลขที่บัตรประกันสังคม ของผู้ถูกหักภาษี ณ ที่จ่าย;
+                  SourceExpr=SocialID }
+
+      { 1170000011;2;Field  ;
+                  CaptionML=ENU=ผู้จ่ายเงิน;
+                  OptionCaptionML=ENU=หักภาษี ณ ที่จ่าย,ออกภาษีให้ตลอดไป,ออกภาษีให้ครั้งเดียว,อื่นๆ ให้ระบุ................;
+                  SourceExpr=PaymentOption }
+
+    }
+  }
+  LABELS
+  {
+  }
+  CODE
+  {
+    VAR
+      GLSetup@1170000055 : Record 98;
+      CompanyInfo@1170000054 : Record 79;
+      Vendor@1170000053 : Record 23;
+      WHTBusPostinGrp@1170000052 : Record 28040;
+      WHTRevType@1170000051 : Record 28042;
+      WHTEntry@1170000050 : Record 28044;
+      WHTEntry2@1170000049 : Record 28044;
+      Name@1170000048 : Text[150];
+      Address@1170000047 : Text[250];
+      Address2@1170000046 : Text[250];
+      City@1170000045 : Text[30];
+      VAT@1170000044 : ARRAY [20] OF Code[1];
+      SNo@1170000043 : Integer;
+      Pdate@1170000042 : Date;
+      CID@1170000041 : ARRAY [20] OF Code[1];
+      i@1170000040 : Integer;
+      ConductName@1170000039 : Text[250];
+      ConductAddress@1170000038 : Text[250];
+      ConductVATID@1170000037 : Text[20];
+      ConductID@1170000036 : Text[20];
+      CCID@1170000035 : ARRAY [20] OF Code[1];
+      ID1@1170000034 : ARRAY [13] OF Code[1];
+      ID2@1170000033 : ARRAY [13] OF Code[1];
+      ID3@1170000032 : ARRAY [13] OF Code[1];
+      PageNo@1170000031 : Integer;
+      WHTGroup@1170000030 : ARRAY [2] OF Text[1];
+      WHTTerm@1170000029 : ARRAY [4] OF Text[1];
+      WHTPostingDate@1170000028 : ARRAY [19] OF Date;
+      WHTBaseAmtLCYExcVAT@1170000027 : ARRAY [19] OF Decimal;
+      WHTAmtLCY@1170000026 : ARRAY [19] OF Decimal;
+      TotWHTBaseAmtLCYExcVAT@1170000025 : Decimal;
+      TotWHTAmtLCY@1170000024 : Decimal;
+      ExpenseType@1170000023 : ARRAY [4] OF Text[1];
+      FormBookNo@1170000022 : Code[10];
+      WHTAmtLCYText@1170000021 : Text[200];
+      NumberOfCopy@1170000020 : Integer;
+      NewDocNo@1170000019 : Code[20];
+      WHTExpenseText@1170000018 : Text[30];
+      HeadingPrint@1170000017 : Boolean;
+      Heading@1170000016 : Text[100];
+      WHTSlipNo@1170000015 : Code[20];
+      PostingDate@1170000014 : Date;
+      PrintTest@1170000013 : Boolean;
+      TestText@1170000012 : Text[70];
+      WHTPostingSetup@1170000011 : Record 28043;
+      PurchInvHeader@1170000010 : Record 122;
+      PaymentOption@1170000009 : '0,1,2,3';
+      PFundNo@1170000008 : Code[20];
+      PFundAmt@1170000007 : Decimal;
+      SocialAmt@1170000006 : Decimal;
+      EmployerAccount@1170000005 : Code[10];
+      SocialID@1170000004 : Code[13];
+      SoID@1170000003 : ARRAY [13] OF Code[1];
+      EID@1170000002 : ARRAY [10] OF Code[1];
+      CompanyPhone@1170000001 : Text[50];
+      Phone@1170000000 : Text[50];
+      WHTAmtLCYT@1170000056 : ARRAY [19] OF Text;
+      TotWHTBaseAmtLCYExcVATT@1170000057 : Text;
+      WHTBaseAmtLCYExcVATT@1170000058 : ARRAY [19] OF Text;
+
+    PROCEDURE FormatNoThaiText@1000000000(Amount@1000000002 : Decimal) @1000000001 : Text[200];
+    VAR
+      AmountText@1000000000 : Text[30];
+      x@1000000003 : Integer;
+      l@1000000004 : Integer;
+      p@1000000008 : Integer;
+      adigit@1000000005 : Text[1];
+      dflag@1000000006 : Boolean;
+      WHTAmtThaiText@1000000007 : Text[200];
+    BEGIN
+      Amount := ROUND(Amount);
+      AmountText := FORMAT(Amount,0);
+      x := STRPOS(AmountText,'.');
+      CASE TRUE OF
+        x = 0:
+          AmountText := AmountText + '.00';
+        x = STRLEN(AmountText) - 1:
+          AmountText := AmountText + '0';
+        x > STRLEN(AmountText) - 2:
+          AmountText := COPYSTR(AmountText,1,x + 2);
+      END;
+      l := STRLEN(AmountText);
+      REPEAT
+        dflag := FALSE;
+        p := STRLEN(AmountText) - l + 1;
+        adigit := COPYSTR(AmountText,p,1);
+        IF (l IN [4,12,20]) AND (l < STRLEN(AmountText)) AND (adigit = '1') THEN
+          dflag := TRUE;
+        WHTAmtThaiText := WHTAmtThaiText + FormatDigitThai(adigit, l-3, dflag);
+        l := l - 1;
+      UNTIL l=3;
+
+      IF COPYSTR(AmountText,STRLEN(AmountText)-2,3) = '.00' THEN
+        WHTAmtThaiText := WHTAmtThaiText + 'บาทถ้วน'
+      ELSE BEGIN
+        IF WHTAmtThaiText <> '' THEN
+          WHTAmtThaiText := WHTAmtThaiText + 'บาท';
+        l := 2;
+        REPEAT
+          dflag := FALSE;
+          p := STRLEN(AmountText) - l + 1;
+          adigit := COPYSTR(AmountText,p,1);
+          IF (l = 1) AND (adigit = '1') AND (COPYSTR(AmountText,p-1,1) <> '0') THEN
+            dflag := TRUE;
+          WHTAmtThaiText := WHTAmtThaiText + FormatDigitThai(adigit, l, dflag);
+          l := l - 1;
+        UNTIL l=0;
+        WHTAmtThaiText := WHTAmtThaiText + 'สตางค์';
+      END;
+
+      EXIT(WHTAmtThaiText);
+    END;
+
+    PROCEDURE FormatDigitThai@1000000005(adigit@1000000002 : Text[1];pos@1000000001 : Integer;dflag@1000000000 : Boolean) : Text[100];
+    VAR
+      fdigit@1000000003 : Text[30];
+      fcount@1000000005 : Text[30];
+    BEGIN
+      CASE adigit OF
+        '1':
+          BEGIN
+            IF (pos IN [1,9,17]) AND dflag THEN
+              fdigit := 'เอ็ด'
+            ELSE
+              IF pos IN [2,10,18] THEN
+                fdigit := ''
+              ELSE
+                fdigit := 'หนึ่ง';
+          END;
+        '2':
+          BEGIN
+            IF pos IN [2,10,18] THEN
+              fdigit := 'ยี่'
+            ELSE
+              fdigit := 'สอง';
+          END;
+        '3':
+          fdigit := 'สาม';
+        '4':
+          fdigit := 'สี่';
+        '5':
+          fdigit := 'ห้า';
+        '6':
+          fdigit := 'หก';
+        '7':
+          fdigit := 'เจ็ด';
+        '8':
+          fdigit := 'แปด';
+        '9':
+          fdigit := 'เก้า';
+        '0':
+          BEGIN
+            IF pos IN [9,17,25] THEN
+              fdigit := 'ล้าน';
+          END;
+        '-':
+          fdigit := 'ลบ';
+      END;
+      IF (adigit <> '0') AND (adigit <> '-') THEN BEGIN
+        CASE pos OF
+          2,10,18:
+            fcount := 'สิบ';
+          3,11,19:
+            fcount := 'ร้อย';
+          5,13,21:
+            fcount := 'พัน';
+          6,14,22:
+            fcount := 'หมื่น';
+          7,15,23:
+            fcount := 'แสน';
+          9,17,25:
+            fcount := 'ล้าน';
+        END;
+      END;
+      EXIT(fdigit+fcount);
+    END;
+
+    LOCAL PROCEDURE BlankZero@1170000005(Number@1170000000 : Decimal) : Text;
+    BEGIN
+      IF Number <> 0 THEN
+        EXIT(FORMAT(Number, 12, '<Precision,2><Sign><Integer Thousand><Decimals>'));
+
+      EXIT('');
+    END;
+
+    BEGIN
+    END.
+  }
+  RDLDATA
+  {
+    <?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>8a01585d-574d-4d2f-8863-bba1d77530bb</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSet</rd:DataSetName>
+        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
+        <rd:TableName>Result</rd:TableName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>7.85in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Auto" />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>7.85433in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle1">
+                          <ReportItems>
+                            <Textbox Name="Textbox2">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>1mm</Top>
+                              <Left>1.5mm</Left>
+                              <Height>6mm</Height>
+                              <Width>65mm</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox3">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>1.5mm</Top>
+                              <Left>66.5mm</Left>
+                              <Height>5mm</Height>
+                              <Width>52.5mm</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox4">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>1.5mm</Top>
+                              <Left>124mm</Left>
+                              <Height>5mm</Height>
+                              <Width>9mm</Width>
+                              <ZIndex>2</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox5">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>25.81249mm</Top>
+                              <Left>76.09084mm</Left>
+                              <Height>5mm</Height>
+                              <Width>19.42708mm</Width>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox6">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>25.81249mm</Top>
+                              <Left>76.09084mm</Left>
+                              <Height>5mm</Height>
+                              <Width>19.42708mm</Width>
+                              <ZIndex>4</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox7">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>1.5mm</Top>
+                              <Left>156mm</Left>
+                              <Height>5mm</Height>
+                              <Width>9mm</Width>
+                              <ZIndex>5</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox8">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>1.5mm</Top>
+                              <Left>166mm</Left>
+                              <Height>1.5mm</Height>
+                              <Width>22.5mm</Width>
+                              <ZIndex>6</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox9">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Auto" />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>1.5mm</Top>
+                              <Left>134mm</Left>
+                              <Height>4.23mm</Height>
+                              <Width>20mm</Width>
+                              <ZIndex>7</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <Height>8.10433in</Height>
+            <Width>7.85in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>8.10433in</Height>
+        <Style />
+      </Body>
+      <Width>7.85in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+</Report>
+    END_OF_RDLDATA
+  }
+}
+

@@ -1,0 +1,1036 @@
+OBJECT Report 50059 Account Payable Voucher -Pre.
+{
+  OBJECT-PROPERTIES
+  {
+    Date=10/12/07;
+    Time=[ 2:31:43 PM];
+    Version List=Burda1.00;
+  }
+  PROPERTIES
+  {
+    TopMargin=1500;
+    BottomMargin=1000;
+    LeftMargin=1000;
+    OnPreReport=BEGIN
+                  CompanyInfo.GET;
+                  CompanyInfo.CALCFIELDS(Picture);
+                  GLSetup.GetShortcutDimCode(ShortcutDimCode);
+                  IF ShortcutDimCode[2] = 'DEPARTMENT' THEN
+                    ShortcutDimCode[2] := 'DEPT.';
+                END;
+
+    PaperSize=A4 210 x 297 mm;
+    HorzGrid=50;
+    VertGrid=100;
+  }
+  DATAITEMS
+  {
+    { PROPERTIES
+      {
+        DataItemTable=Table38;
+        DataItemTableView=SORTING(Document Type,No.);
+        NewPagePerGroup=Yes;
+        OnPreDataItem=BEGIN
+                        CurrReport.CREATETOTALS(DrAmount,CrAmount);
+                      END;
+
+        OnAfterGetRecord=BEGIN
+                           CLEAR(AccCode);
+                           CLEAR(AccName);
+                           CLEAR(Dimension1Code);
+                           CLEAR(Dimension2Code);
+                           CLEAR(Dimension3Code);
+                           CLEAR(Dimension4Code);
+                           CLEAR(Dimension5Code);
+                           CLEAR(DrAmount);
+                           CLEAR(CrAmount);
+                           CLEAR(TotalDrAmount);
+                           CLEAR(TotalCrAmount);
+                           CLEAR(WHTCode);
+                           CLEAR(WHTCrAmount);
+
+                           Description := "Ship-to Name (Thai)";
+                           PostingDate := "Posting Date";
+                           DocumentNo := "No.";
+                         END;
+
+        ReqFilterFields=Document Type,No.;
+        GroupTotalFields=No.;
+        CalcFields=Amount,Amount Including VAT;
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=GroupHeader;
+            SectionWidth=19300;
+            SectionHeight=6100;
+            OnPreSection=BEGIN
+                           CntLine := 0;
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000053;Label  ;12200;1900 ;6900 ;500  ;VertAlign=Bottom;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=PRE-POST.............................................................. }
+            { 1000000068;TextBox;13900;1900 ;4600 ;500  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr="No." }
+            { 1000000073;Shape  ;0    ;4985 ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+            { 1000000074;Label  ;15950;5300 ;3000 ;550  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=CREDIT }
+            { 1000000075;Shape  ;15800;5000 ;150  ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000076;Label  ;12750;5300 ;3000 ;550  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=DEBIT }
+            { 1000000079;Shape  ;2850 ;5000 ;150  ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000080;Label  ;3300 ;5300 ;5500 ;550  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=DESCRIPTION }
+            { 1000000081;Label  ;150  ;5300 ;2650 ;550  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=ACCOUNT CODE }
+            { 1000000082;Shape  ;0    ;6070 ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+            { 1000000083;Shape  ;19100;5000 ;30   ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000084;Shape  ;0    ;5000 ;30   ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000121;Label  ;0    ;3700 ;1600 ;550  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=VENDOR : }
+            { 1000000122;TextBox;1700 ;3700 ;10300;550  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=DESCRIPTION;
+                                                                    THA=ชื่อ];
+                                                         SourceExpr="Purchase Header"."Pay-to Vendor No." + ' ' + "Purchase Header"."Pay-to Name" + '' + "Purchase Header"."Pay-to Name 2" }
+            { 1000000023;Label  ;10000;0    ;6650 ;850  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=11;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=ACCOUNT PAYABLE VOUCHER }
+            { 1000000048;TextBox;0    ;0    ;9700 ;900  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=12;
+                                                         FontBold=Yes;
+                                                         SourceExpr=CompanyInfo.Name }
+            { 1000000055;Label  ;12200;2500 ;6900 ;500  ;VertAlign=Bottom;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=POSTED................................................................... }
+            { 1000000062;Label  ;12200;3050 ;6900 ;500  ;VertAlign=Bottom;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=DATE....................................................................... }
+            { 1000000063;TextBox;13350;3050 ;4650 ;500  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr="Posting Date" }
+            { 1000000071;Label  ;12200;3700 ;6900 ;500  ;VertAlign=Bottom;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=PRINTED DATE................................................... }
+            { 1000000072;TextBox;14500;3700 ;3700 ;500  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr=TODAY }
+            { 1000000010;Shape  ;9500 ;5000 ;150  ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000046;TextBox;9650 ;5315 ;1500 ;500  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr=ShortcutDimCode[1] }
+            { 1000000054;Shape  ;11150;5000 ;150  ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000056;TextBox;11300;5330 ;1250 ;500  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr=ShortcutDimCode[2] }
+            { 1000000077;Shape  ;12550;5000 ;150  ;1100 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000091;TextBox;0    ;4300 ;19050;550  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=DESCRIPTION;
+                                                                    THA=ชื่อ];
+                                                         SourceExpr='Description : ' + "Purchase Header"."Invoice Description" }
+            { 1000000038;TextBox;0    ;900  ;9700 ;550  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr=CompanyInfo.Address + CompanyInfo."Address 2" }
+            { 1000000041;TextBox;0    ;1500 ;9700 ;550  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr=CompanyInfo."Address 3" + ' ' + CompanyInfo."Post Code" }
+            { 1000000042;TextBox;0    ;2100 ;9700 ;550  ;HorzAlign=Left;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         SourceExpr='Tel: ' + CompanyInfo."Phone No." + ' Fax: ' + CompanyInfo."Fax No." }
+            { 1000000049;TextBox;0    ;2700 ;9700 ;550  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr='VAT Registration No. ' + CompanyInfo."VAT Registration No." }
+          }
+           }
+        { PROPERTIES
+          {
+            SectionType=GroupFooter;
+            SectionWidth=19300;
+            SectionHeight=830;
+            OnPreSection=BEGIN
+                           CheckReport.InitTextVariable;
+                           CheckReport.FormatNoText(TextAmount,ABS(TotalDrAmount),"Currency Code");
+
+                           IF TextAmount[1] <> '' THEN
+                             TextAmount[1] := '(' + TextAmount[1] + ')';
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000025;Label  ;11050;100  ;1450 ;600  ;HorzAlign=Center;
+                                                         FontSize=9;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=Total }
+            { 1000000026;TextBox;15950;100  ;3000 ;600  ;FontSize=9;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=CREDIT;
+                                                         SourceExpr=TotalCrAmount }
+            { 1000000027;TextBox;12750;100  ;3000 ;600  ;FontSize=9;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=DEBIT;
+                                                         SourceExpr=TotalDrAmount }
+            { 1000000028;Shape  ;19100;0    ;30   ;800  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000029;Shape  ;15800;0    ;150  ;800  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000030;Shape  ;12550;0    ;150  ;800  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000031;Shape  ;0    ;0    ;30   ;800  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000032;Shape  ;15   ;0    ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+            { 1000000045;Shape  ;0    ;800  ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+            { 1000000014;TextBox;100  ;100  ;10850;600  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=ACCOUNT CODE;
+                                                                    THA=หมายเลขบัญชี G/L];
+                                                         SourceExpr=TextAmount[1] }
+          }
+           }
+        { PROPERTIES
+          {
+            SectionType=Footer;
+            PrintOnEveryPage=Yes;
+            PlaceInBottom=Yes;
+            SectionWidth=19300;
+            SectionHeight=3015;
+          }
+          CONTROLS
+          {
+            { 1000000001;Shape  ;19100;215  ;30   ;2785 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000033;Shape  ;0    ;200  ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+            { 1000000036;Label  ;10600;200  ;8100 ;600  ;HorzAlign=Center;
+                                                         FontSize=10;
+                                                         FontBold=Yes;
+                                                         MultiLine=Yes;
+                                                         CaptionML=ENU=Approved by }
+            { 1000000016;Shape  ;10000;200  ;30   ;2785 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000037;Label  ;400  ;200  ;9000 ;600  ;HorzAlign=Center;
+                                                         FontSize=10;
+                                                         FontBold=Yes;
+                                                         MultiLine=Yes;
+                                                         CaptionML=ENU=Prepared By }
+            { 1000000034;Shape  ;0    ;900  ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+            { 1000000018;Shape  ;0    ;215  ;30   ;2785 ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000043;Label  ;10650;1670 ;8050 ;423  ;HorzAlign=Center;
+                                                         VertAlign=Bottom;
+                                                         FontSize=10;
+                                                         CaptionML=ENU=_____________________________ }
+            { 1000000039;Label  ;400  ;1685 ;9000 ;423  ;HorzAlign=Center;
+                                                         VertAlign=Bottom;
+                                                         FontSize=10;
+                                                         CaptionML=ENU=_____________________________ }
+            { 1000000040;Label  ;400  ;2335 ;9000 ;423  ;HorzAlign=Center;
+                                                         VertAlign=Bottom;
+                                                         FontSize=10;
+                                                         CaptionML=ENU=_________/_________/_________ }
+            { 1000000044;Label  ;10650;2320 ;8050 ;423  ;HorzAlign=Center;
+                                                         VertAlign=Bottom;
+                                                         FontSize=10;
+                                                         CaptionML=ENU=_________/_________/_________ }
+            { 1000000035;Shape  ;0    ;2985 ;19100;30   ;BorderWidth=1pt;
+                                                         ShapeStyle=HorzLine }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=1;
+        DataItemTable=Table39;
+        DataItemTableView=SORTING(Document Type,Document No.,Line No.)
+                          WHERE(Type=FILTER(<>' '));
+        OnAfterGetRecord=BEGIN
+                           CLEAR(AccountNo);
+                           CASE Type OF
+                             Type::"G/L Account":
+                               BEGIN
+                                 AccountNo := "No.";
+                               END;
+                             Type::Item:
+                               BEGIN
+                                 GenPostingSetup.GET("Gen. Bus. Posting Group","Gen. Prod. Posting Group");
+                                 //HKK : #002 +
+                                 //Remark By KK
+                                 //AccountNo := GenPostingSetup."Purch. Account";
+                                 //HKK : #002 -
+                               END;
+                             Type::"Fixed Asset":
+                               BEGIN
+                                 FALedgEntry.INIT;
+                                 CASE "FA Posting Type" OF
+                                   "FA Posting Type"::"Acquisition Cost":
+                                     FALedgEntry."FA Posting Type" := FALedgEntry."FA Posting Type"::"Acquisition Cost";
+                                 END;
+                                 FALedgEntry."FA Posting Group" := "Posting Group";
+                                 AccountNo := FAGetGLAccNo.GetAccNo(FALedgEntry);
+                               END;
+                             ELSE
+                               EXIT;
+                           END;
+
+                           IF NOT GLAcc.GET(AccountNo) THEN
+                             GLAcc.INIT;
+
+                           ShortcutDim3Code := '';
+                           ShortcutDim4Code := '';
+                           ShortcutDim5Code := '';
+                           IF DocumentDim.GET(39,"Document Type","Document No.","Line No.",ShortcutDimCode[3]) THEN
+                             ShortcutDim3Code := DocumentDim."Dimension Value Code";
+                           IF DocumentDim.GET(39,"Document Type","Document No.","Line No.",ShortcutDimCode[4]) THEN
+                             ShortcutDim4Code := DocumentDim."Dimension Value Code";
+                           IF DocumentDim.GET(39,"Document Type","Document No.","Line No.",ShortcutDimCode[5]) THEN
+                             ShortcutDim5Code := DocumentDim."Dimension Value Code";
+
+                           i := 0;
+                           MatchAcc := FALSE;
+                           REPEAT
+                             i := i + 1;
+                             IF ((AccCode[i] = AccountNo) AND
+                                 (AccName[i] = Description) AND //KKE : #003
+                                 (Dimension1Code[i] = "Shortcut Dimension 1 Code") AND
+                                 (Dimension2Code[i] = "Shortcut Dimension 2 Code") AND
+                                 (Dimension3Code[i] = ShortcutDim3Code) AND
+                                 (Dimension4Code[i] = ShortcutDim4Code) AND
+                                 (Dimension5Code[i] = ShortcutDim5Code))
+                                OR (AccCode[i] = '')
+                             THEN
+                               MatchAcc := TRUE;
+                           UNTIL (i=27) OR MatchAcc;
+
+                           AccCode[i] := AccountNo;
+                           //AccName[i] := GLAcc.Name;
+                           AccName[i] := Description;  //KKE : #003
+                           Dimension1Code[i] := "Shortcut Dimension 1 Code";
+                           Dimension2Code[i] := "Shortcut Dimension 2 Code";
+                           Dimension3Code[i] := ShortcutDim3Code;
+                           Dimension4Code[i] := ShortcutDim4Code;
+                           Dimension5Code[i] := ShortcutDim5Code;
+
+                           {
+                           IF "Qty. to Invoice" = Quantity THEN
+                             VATBaseAmt := "VAT Base Amount"
+                           ELSE
+                             VATBaseAmt := ROUND("VAT Base Amount" * "Qty. to Invoice" / Quantity);
+                           } //change code for rounding amount by using line discount - 20.03.2007
+                           {
+                           IF "Qty. to Invoice" = Quantity THEN
+                             VATBaseAmt := "VAT Base Amount" - "Line Discount Amount"
+                           ELSE
+                             VATBaseAmt := ROUND("VAT Base Amount" * "Qty. to Invoice" / Quantity) - "Line Discount Amount";
+                           } //29.03.2007
+
+                           //KKE : xxx
+                           IF "Avg. VAT Amount" <> 0 THEN BEGIN
+                             IF "Qty. to Invoice" = Quantity THEN
+                               VATBaseAmt := "Amount Including VAT" - "Avg. VAT Amount"
+                             ELSE
+                               VATBaseAmt := ROUND(("Amount Including VAT" - "Avg. VAT Amount") * "Qty. to Invoice" / Quantity);
+                           END ELSE BEGIN
+                           //KKE : xxx
+                             IF "Qty. to Invoice" = Quantity THEN
+                               VATBaseAmt := Amount
+                             ELSE
+                               VATBaseAmt := ROUND(Amount * "Qty. to Invoice" / Quantity);
+                           END;
+
+                           //HKK : #002 +
+                           { Remark By KK
+                           IF "Qty. to Invoice" * "Unit Cost (LCY)" >= 0 THEN
+                             DrAmount[i] := DrAmount[i] + "Qty. to Invoice" * "Unit Cost (LCY)"
+                           ELSE
+                             CrAmount[i] := CrAmount[i] - "Qty. to Invoice" * "Unit Cost (LCY)";
+                           }
+                           IF AccountNo <> '' THEN BEGIN
+                             IF VATBaseAmt >= 0 THEN
+                               DrAmount[i] := DrAmount[i] + VATBaseAmt
+                             ELSE
+                               CrAmount[i] := CrAmount[i] - VATBaseAmt;
+                           END;
+                           //HKK : #002 -
+
+                           // VAT
+                           CLEAR(AccountNo);
+                           VATPostingSetup.GET("VAT Bus. Posting Group","VAT Prod. Posting Group");
+                           IF VATPostingSetup."Purch. VAT Unreal. Account" <> '' THEN
+                             AccountNo := VATPostingSetup."Purch. VAT Unreal. Account"
+                           ELSE
+                             AccountNo := VATPostingSetup."Purchase VAT Account";
+                           IF NOT GLAcc.GET(AccountNo) THEN
+                             GLAcc.INIT;
+
+                           i := 0;
+                           MatchAcc := FALSE;
+                           REPEAT
+                             i := i + 1;
+                             IF ((AccCode[i] = AccountNo) AND
+                                 (Dimension1Code[i] = "Shortcut Dimension 1 Code") AND
+                                 (Dimension2Code[i] = "Shortcut Dimension 2 Code") AND
+                                 (Dimension3Code[i] = ShortcutDim3Code) AND
+                                 (Dimension4Code[i] = ShortcutDim4Code) AND
+                                 (Dimension5Code[i] = ShortcutDim5Code))
+                                OR (AccCode[i] = '')
+                             THEN
+                               MatchAcc := TRUE;
+                           UNTIL (i=27) OR MatchAcc;
+                           AccCode[i] := AccountNo;
+                           AccName[i] := GLAcc.Name;
+                           Dimension1Code[i] := "Shortcut Dimension 1 Code";
+                           Dimension2Code[i] := "Shortcut Dimension 2 Code";
+                           Dimension3Code[i] := ShortcutDim3Code;
+                           Dimension4Code[i] := ShortcutDim4Code;
+                           Dimension5Code[i] := ShortcutDim5Code;
+                           //VATAmt := ROUND("Qty. to Invoice" * "Direct Unit Cost") * "VAT %" /100 + "VAT Difference";
+                           //VATAmt := VATBaseAmt * "VAT %" /100 + "VAT Difference";
+
+                           //KKE : xxx
+                           IF "Avg. VAT Amount" <> 0 THEN
+                             VATAmt := "Avg. VAT Amount"
+                           ELSE
+                           //KKE : xxx
+                             VATAmt := "Amount Including VAT" - Amount;  //04.06.2007
+
+                           //IF VATAmt  >= 0 THEN  //KKE : 26.03.2007
+                           IF DrAmount[i] + VATAmt  >= 0 THEN
+                             DrAmount[i] := DrAmount[i] + VATAmt
+                           ELSE
+                             CrAmount[i] := CrAmount[i] - VATAmt;
+
+                           // WHT
+                           WHTPostingSetup.GET("WHT Business Posting Group","WHT Product Posting Group");
+                           IF WHTPostingSetup."WHT %" <> 0 THEN BEGIN
+                             i := 0;
+                             {--
+                             REPEAT
+                               i := i + 1;
+                             UNTIL (i=200) OR (WHTCode[i] = '');
+                             ---}  //Burda
+                             MatchAcc := FALSE;
+                             REPEAT
+                               i := i + 1;
+                               IF (WHTProd[i] = "WHT Product Posting Group") OR (WHTProd[i] = '') THEN
+                                 MatchAcc := TRUE;
+                             UNTIL (i=200) OR MatchAcc;
+                             WHTCode[i] := 'WHT';
+                             WHTProd[i] := "WHT Product Posting Group";
+                             IF "WHT Absorb Base" = 0 THEN
+                               WHTCrAmount[i] += ROUND("Qty. to Invoice" * "Unit Cost (LCY)" * WHTPostingSetup."WHT %" /100)
+                             ELSE
+                               WHTCrAmount[i] += ROUND("WHT Absorb Base" * WHTPostingSetup."WHT %" /100);
+                           END;
+
+                           //Direct Inventory post cost
+                           IF ("Job No." = '') AND (Type = Type::Item) THEN BEGIN
+                             IF InventoryPostingSetup.GET("Location Code","Posting Group") THEN BEGIN
+                               AccountNo := InventoryPostingSetup."Inventory Account";
+                               IF NOT GLAcc.GET(AccountNo) THEN
+                                 GLAcc.INIT;
+
+                               MatchAcc := FALSE;
+                               i := 0;
+                               REPEAT
+                                 i := i + 1;
+                                 IF ((AccCode[i] = AccountNo) AND
+                                     (Dimension1Code[i] = "Shortcut Dimension 1 Code") AND
+                                     (Dimension2Code[i] = "Shortcut Dimension 2 Code") AND
+                                     (Dimension3Code[i] = ShortcutDim3Code) AND
+                                     (Dimension4Code[i] = ShortcutDim4Code) AND
+                                     (Dimension5Code[i] = ShortcutDim5Code))
+                                    OR (AccCode[i] = '')
+                                 THEN
+                                   MatchAcc := TRUE;
+                               UNTIL (i=27) OR MatchAcc;
+                               AccCode[i] := AccountNo;
+                               AccName[i] := GLAcc.Name;
+                               Dimension1Code[i] := "Shortcut Dimension 1 Code";
+                               Dimension2Code[i] := "Shortcut Dimension 2 Code";
+                               Dimension3Code[i] := ShortcutDim3Code;
+                               Dimension4Code[i] := ShortcutDim4Code;
+                               Dimension5Code[i] := ShortcutDim5Code;
+                               //DrAmount[i] := DrAmount[i] + "Qty. to Invoice" * "Direct Unit Cost";
+                               DrAmount[i] := DrAmount[i] + VATBaseAmt;
+
+                               //HKK : #002 +
+                               { Remark By KK
+                               GenPostingSetup.GET("Gen. Bus. Posting Group","Gen. Prod. Posting Group");
+                               AccountNo := GenPostingSetup."Direct Cost Applied Account";
+                               IF NOT GLAcc.GET(AccountNo) THEN
+                                 GLAcc.INIT;
+                               MatchAcc := FALSE;
+                               i := 0;
+                               REPEAT
+                                 i := i + 1;
+                                 IF ((AccCode[i] = AccountNo) AND
+                                     (Dimension1Code[i] = "Shortcut Dimension 1 Code") AND
+                                     (Dimension2Code[i] = "Shortcut Dimension 2 Code") AND
+                                     (Dimension3Code[i] = ShortcutDim3Code) AND
+                                     (Dimension4Code[i] = ShortcutDim4Code) AND
+                                     (Dimension5Code[i] = ShortcutDim5Code))
+                                    OR (AccCode[i] = '')
+                                 THEN
+                                   MatchAcc := TRUE;
+                               UNTIL (i=27) OR MatchAcc;
+                               AccCode[i] := AccountNo;
+                               AccName[i] := GLAcc.Name;
+                               Dimension1Code[i] := "Shortcut Dimension 1 Code";
+                               Dimension2Code[i] := "Shortcut Dimension 2 Code";
+                               Dimension3Code[i] := ShortcutDim3Code;
+                               Dimension4Code[i] := ShortcutDim4Code;
+                               Dimension5Code[i] := ShortcutDim5Code;
+                               CrAmount[i] := CrAmount[i] + "Qty. to Invoice" * "Unit Cost (LCY)";
+                               }
+                               //HKK : #002 -
+                             END;
+                           END;
+                         END;
+
+        DataItemLink=Document Type=FIELD(Document Type),
+                     Document No.=FIELD(No.);
+      }
+      SECTIONS
+      {
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=1;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number)
+                          WHERE(Number=FILTER(1..));
+        DataItemVarName=Detail;
+        OnPreDataItem=BEGIN
+                        VendPostingGrp.GET("Purchase Header"."Vendor Posting Group");
+                        IF NOT GLAcc.GET(VendPostingGrp."Payables Account") THEN
+                          GLAcc.INIT;
+
+                        ShortcutDim3Code := '';
+                        ShortcutDim4Code := '';
+                        ShortcutDim5Code := '';
+                        IF DocumentDim.GET(38,"Purchase Header"."Document Type","Purchase Header"."No.",0,ShortcutDimCode[3]) THEN
+                          ShortcutDim3Code := DocumentDim."Dimension Value Code";
+                        IF DocumentDim.GET(38,"Purchase Header"."Document Type","Purchase Header"."No.",0,ShortcutDimCode[4]) THEN
+                          ShortcutDim4Code := DocumentDim."Dimension Value Code";
+                        IF DocumentDim.GET(38,"Purchase Header"."Document Type","Purchase Header"."No.",0,ShortcutDimCode[5]) THEN
+                          ShortcutDim5Code := DocumentDim."Dimension Value Code";
+
+                        MatchAcc := FALSE;
+                        i := 0;
+                        REPEAT
+                          i := i + 1;
+                          IF ((AccCode[i] =  VendPostingGrp."Payables Account") AND
+                              (Dimension1Code[i] = "Purchase Header"."Shortcut Dimension 1 Code") AND
+                              (Dimension2Code[i] = "Purchase Header"."Shortcut Dimension 2 Code") AND
+                              (Dimension3Code[i] = ShortcutDim3Code) AND
+                              (Dimension4Code[i] = ShortcutDim4Code) AND
+                              (Dimension5Code[i] = ShortcutDim5Code))
+                             OR (AccCode[i] = '')
+                          THEN
+                            MatchAcc := TRUE
+                        UNTIL (i=27) OR MatchAcc;
+
+                        AccCode[i] := VendPostingGrp."Payables Account";
+                        AccName[i] := GLAcc.Name;
+                        Dimension1Code[i] := "Purchase Header"."Shortcut Dimension 1 Code";
+                        Dimension2Code[i] := "Purchase Header"."Shortcut Dimension 2 Code";
+                        Dimension3Code[i] := ShortcutDim3Code;
+                        Dimension4Code[i] := ShortcutDim4Code;
+                        Dimension5Code[i] := ShortcutDim5Code;
+
+                        FOR j := 1 TO 27 DO BEGIN
+                          IF i <> j THEN
+                            CrAmount[i] := CrAmount[i] + DrAmount[j] - CrAmount[j]
+                          ELSE
+                            CrAmount[i] := CrAmount[i] + DrAmount[j];
+                        END;
+                        IF CrAmount[i] < 0 THEN BEGIN
+                          DrAmount[i] := -CrAmount[i];
+                          CrAmount[i] := 0;
+                        END;
+
+                        //Incase Purchase Credit Memo.
+                        IF "Purchase Header"."Document Type" = "Purchase Header"."Document Type"::"Credit Memo" THEN BEGIN
+                          i := 27;
+                          j := 0;
+                          REPEAT
+                            IF AccCode[i] <> '' THEN BEGIN
+                              j := j + 1;
+                              CrMemoAccCode[j] := AccCode[i];
+                              CrMemoAccName[j] := AccName[i];
+                              CrMemoDim1Code[i] := Dimension1Code[i];
+                              CrMemoDim2Code[i] := Dimension2Code[i];
+                              CrMemoDim3Code[i] := Dimension3Code[i];
+                              CrMemoDim4Code[i] := Dimension4Code[i];
+                              CrMemoDim5Code[i] := Dimension5Code[i];
+                              IF CrAmount[i] <> 0 THEN
+                                CrMemoDrAmount[j] := CrAmount[i]
+                              ELSE
+                                CrMemoCrAmount[j] := DrAmount[i];
+                            END;
+                            i := i - 1;
+                          UNTIL i=0;
+                          CLEAR(AccCode);
+                          CLEAR(AccName);
+                          CLEAR(DrAmount);
+                          CLEAR(CrAmount);
+                          FOR i:=1 TO j DO BEGIN
+                            AccCode[i] := CrMemoAccCode[i];
+                            AccName[i] := CrMemoAccName[i];
+                            Dimension1Code[i] := CrMemoDim1Code[i];
+                            Dimension2Code[i] := CrMemoDim2Code[i];
+                            Dimension3Code[i] := CrMemoDim3Code[i];
+                            Dimension4Code[i] := CrMemoDim4Code[i];
+                            Dimension5Code[i] := CrMemoDim5Code[i];
+                            DrAmount[i] := CrMemoDrAmount[i];
+                            CrAmount[i] := CrMemoCrAmount[i];
+                          END;
+                        END;
+                      END;
+
+        OnAfterGetRecord=BEGIN
+                           IF AccCode[Number] = '' THEN
+                             CurrReport.BREAK;
+
+                           IF (DrAmount[Number] = 0) AND (CrAmount[Number] = 0) THEN
+                             CurrReport.SKIP;
+
+                           CntLine += 1;
+                         END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19300;
+            SectionHeight=500;
+            OnPreSection=BEGIN
+                           IF (DrAmount[Number] <> 0) AND (CrAmount[Number] <> 0) THEN
+                             IF DrAmount[Number] > CrAmount[Number] THEN BEGIN
+                               DrAmount[Number] := DrAmount[Number] - CrAmount[Number];
+                               CrAmount[Number] := 0;
+                             END ELSE BEGIN
+                               CrAmount[Number] := CrAmount[Number] - DrAmount[Number];
+                               DrAmount[Number] := 0;
+                             END;
+
+                           TotalDrAmount := TotalDrAmount + DrAmount[Number];
+                           TotalCrAmount := TotalCrAmount + CrAmount[Number];
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000003;TextBox;150  ;0    ;2650 ;500  ;HorzAlign=Center;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=ACCOUNT CODE;
+                                                                    THA=หมายเลขบัญชี G/L];
+                                                         SourceExpr=AccCode[Number] }
+            { 1000000005;TextBox;3050 ;0    ;6450 ;500  ;FontSize=9;
+                                                         CaptionML=[ENU=DESCRIPTION;
+                                                                    THA=ชื่อ];
+                                                         SourceExpr=AccName[Number] }
+            { 1000000006;TextBox;12750;0    ;3000 ;500  ;FontSize=9;
+                                                         CaptionML=ENU=DEBIT;
+                                                         BlankZero=Yes;
+                                                         SourceExpr=DrAmount[Number] }
+            { 1000000007;TextBox;15950;0    ;3000 ;500  ;FontSize=9;
+                                                         CaptionML=ENU=CREDIT;
+                                                         BlankZero=Yes;
+                                                         SourceExpr=CrAmount[Number] }
+            { 1000000008;Shape  ;19100;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000009;Shape  ;15800;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000011;Shape  ;2850 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000012;Shape  ;0    ;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000097;Shape  ;12550;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000094;TextBox;11300;0    ;1250 ;500  ;HorzAlign=Center;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=DEBIT;
+                                                         SourceExpr=Dimension2Code[Number] }
+            { 1000000092;Shape  ;11150;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000096;TextBox;9650 ;0    ;1500 ;500  ;HorzAlign=Center;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=DEBIT;
+                                                         SourceExpr=Dimension1Code[Number] }
+            { 1000000095;Shape  ;9500 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=1;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number)
+                          WHERE(Number=FILTER(1..));
+        DataItemVarName=WHT;
+        OnAfterGetRecord=BEGIN
+                           IF WHTCode[Number] = '' THEN
+                            CurrReport.BREAK;
+
+                           CntLine += 1;
+                         END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19300;
+            SectionHeight=500;
+            OnPreSection=BEGIN
+                           CurrReport.SHOWOUTPUT := "Purchase Header"."Document Type" = "Purchase Header"."Document Type"::"Credit Memo";
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000002;TextBox;150  ;0    ;2650 ;500  ;HorzAlign=Center;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=ACCOUNT CODE;
+                                                                    THA=หมายเลขบัญชี G/L];
+                                                         SourceExpr=WHTCode[Number] }
+            { 1000000015;TextBox;12750;0    ;3000 ;500  ;FontSize=9;
+                                                         CaptionML=ENU=CREDIT;
+                                                         BlankZero=Yes;
+                                                         SourceExpr=WHTCrAmount[Number] }
+            { 1000000017;Shape  ;19100;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000019;Shape  ;15800;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000021;Shape  ;2850 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000022;Shape  ;0    ;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000020;Shape  ;9500 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000024;Shape  ;11150;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000059;Shape  ;12550;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000000;TextBox;3600 ;0    ;4900 ;500  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=ACCOUNT CODE;
+                                                                    THA=หมายเลขบัญชี G/L];
+                                                         SourceExpr=WHTProd[Number] }
+          }
+           }
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19300;
+            SectionHeight=500;
+            OnPreSection=BEGIN
+                           CurrReport.SHOWOUTPUT := "Purchase Header"."Document Type" <> "Purchase Header"."Document Type"::"Credit Memo";
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000004;TextBox;150  ;0    ;2650 ;500  ;HorzAlign=Center;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=ACCOUNT CODE;
+                                                                    THA=หมายเลขบัญชี G/L];
+                                                         SourceExpr=WHTCode[Number] }
+            { 1000000013;TextBox;15950;0    ;3000 ;500  ;FontSize=9;
+                                                         CaptionML=ENU=CREDIT;
+                                                         BlankZero=Yes;
+                                                         SourceExpr=WHTCrAmount[Number] }
+            { 1000000057;Shape  ;19100;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000058;Shape  ;15800;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000060;Shape  ;2850 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000061;Shape  ;0    ;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000065;Shape  ;9500 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000066;Shape  ;11150;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000067;Shape  ;12550;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000064;TextBox;3600 ;0    ;4950 ;500  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         CaptionML=[ENU=ACCOUNT CODE;
+                                                                    THA=หมายเลขบัญชี G/L];
+                                                         SourceExpr=WHTProd[Number] }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=1;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number)
+                          WHERE(Number=CONST(1));
+        DataItemVarName=Description1;
+        OnAfterGetRecord=BEGIN
+                           CntLine += 1;
+                         END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19300;
+            SectionHeight=500;
+            OnPreSection=BEGIN
+                           CurrReport.SHOWOUTPUT := "Purchase Header"."Document Type" <> "Purchase Header"."Document Type"::"Credit Memo";
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000047;Shape  ;19100;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000050;Shape  ;15800;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000112;Shape  ;2850 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000113;Shape  ;0    ;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000069;Shape  ;9500 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000070;Shape  ;11150;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000078;Shape  ;12550;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000088;Label  ;150  ;0    ;3000 ;500  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=Vendor Invoice No. }
+            { 1000000089;TextBox;3250 ;0    ;6150 ;500  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         SourceExpr="Purchase Header"."Vendor Invoice No." }
+          }
+           }
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19300;
+            SectionHeight=500;
+            OnPreSection=BEGIN
+                           CurrReport.SHOWOUTPUT := "Purchase Header"."Document Type" = "Purchase Header"."Document Type"::"Credit Memo";
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000090;Shape  ;19100;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000093;Shape  ;15800;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000098;Shape  ;2850 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000099;Shape  ;0    ;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000100;Shape  ;9500 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000101;Shape  ;11150;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000102;Shape  ;12550;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000103;Label  ;150  ;0    ;3000 ;500  ;HorzAlign=Center;
+                                                         FontName=Tahoma;
+                                                         FontSize=9;
+                                                         CaptionML=ENU=Vendor Cr. Memo No. }
+            { 1000000104;TextBox;3250 ;0    ;6150 ;500  ;HorzAlign=Left;
+                                                         FontSize=9;
+                                                         SourceExpr="Purchase Header"."Vendor Cr. Memo No." }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=1;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number)
+                          WHERE(Number=FILTER(1..));
+        DataItemVarName=Line Loop;
+        OnPreDataItem=BEGIN
+                        SETRANGE(Number,1,30 - CntLine);
+                      END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19300;
+            SectionHeight=500;
+          }
+          CONTROLS
+          {
+            { 1000000051;Shape  ;19100;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000052;Shape  ;15800;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000105;Shape  ;2850 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000106;Shape  ;0    ;0    ;30   ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000085;Shape  ;9500 ;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000086;Shape  ;11150;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+            { 1000000087;Shape  ;12550;0    ;150  ;500  ;BorderWidth=1pt;
+                                                         ShapeStyle=VertLine }
+          }
+           }
+      }
+       }
+  }
+  REQUESTPAGE
+  {
+    PROPERTIES
+    {
+    }
+    CONTROLS
+    {
+    }
+  }
+  CODE
+  {
+    VAR
+      CompanyInfo@1000000000 : Record 79;
+      VendPostingGrp@1000000015 : Record 93;
+      GenPostingSetup@1000000016 : Record 252;
+      VATPostingSetup@1000000018 : Record 325;
+      WHTPostingSetup@1000000020 : Record 28043;
+      PurchLine@1000000014 : Record 39;
+      GLSetup@1000000034 : Record 98;
+      GLAcc@1000 : Record 15;
+      DocumentDim@1000000004 : Record 357;
+      InventoryPostingSetup@1000000021 : Record 5813;
+      Description@1000000001 : Text[250];
+      DocumentNo@1000000002 : Code[20];
+      PostingDate@1000000003 : Date;
+      AccountNo@1000000017 : Code[20];
+      AccCode@1000000005 : ARRAY [27] OF Code[20];
+      AccName@1000000006 : ARRAY [27] OF Text[50];
+      DrAmount@1000000008 : ARRAY [27] OF Decimal;
+      CrAmount@1000000009 : ARRAY [27] OF Decimal;
+      TotalDrAmount@1000000012 : Decimal;
+      TotalCrAmount@1000000011 : Decimal;
+      MatchAcc@1000000013 : Boolean;
+      i@1000000010 : Integer;
+      j@1000000019 : Integer;
+      WHTCode@1000000026 : ARRAY [200] OF Code[20];
+      WHTCrAmount@1000000022 : ARRAY [200] OF Decimal;
+      CrMemoAccCode@1000000029 : ARRAY [27] OF Code[20];
+      CrMemoAccName@1000000028 : ARRAY [27] OF Text[50];
+      CrMemoDrAmount@1000000025 : ARRAY [27] OF Decimal;
+      CrMemoCrAmount@1000000023 : ARRAY [27] OF Decimal;
+      Dimension1Code@1000000043 : ARRAY [27] OF Code[20];
+      Dimension2Code@1000000042 : ARRAY [27] OF Code[20];
+      Dimension3Code@1000000041 : ARRAY [27] OF Code[20];
+      Dimension4Code@1000000040 : ARRAY [27] OF Code[20];
+      Dimension5Code@1000000039 : ARRAY [27] OF Code[20];
+      ShortcutDimCode@1000000033 : ARRAY [8] OF Code[20];
+      ShortcutDim1Code@1000000036 : Code[20];
+      ShortcutDim2Code@1000000035 : Code[20];
+      ShortcutDim3Code@1000000032 : Code[20];
+      ShortcutDim4Code@1000000031 : Code[20];
+      ShortcutDim5Code@1000000030 : Code[20];
+      CrMemoDim1Code@1000000047 : ARRAY [27] OF Code[20];
+      CrMemoDim2Code@1000000046 : ARRAY [27] OF Code[20];
+      CrMemoDim3Code@1000000045 : ARRAY [27] OF Code[20];
+      CrMemoDim4Code@1000000044 : ARRAY [27] OF Code[20];
+      CrMemoDim5Code@1000000038 : ARRAY [27] OF Code[20];
+      CntLine@1000000037 : Integer;
+      FALedgEntry@1000000024 : Record 5601;
+      FAGetGLAccNo@1000000007 : Codeunit 5602;
+      FormatAddr@1000000027 : Codeunit 365;
+      VATBaseAmt@1000000049 : Decimal;
+      VATAmt@1000000048 : Decimal;
+      CheckReport@1000000051 : Report 1401;
+      TextAmount@1000000050 : ARRAY [2] OF Text[250];
+      WHTProd@1000000052 : ARRAY [200] OF Code[20];
+
+    BEGIN
+    {
+      Microsoft Business Solutions Navision
+      ----------------------------------------
+      Project: Burda
+      KKE : Kanoknard Ketnut
+
+      No.   Date         Sign  Description
+      ----------------------------------------
+      001   14.09.2006   KKE   -New report 'Account Payable Voucher' (before posted).
+                               -Show G/L entries related to cost of inventory. These entries are posted
+                                automatically by the system when user does not input job code on purchase line.
+                               -Account Payable for Credit memo need to show debit,credit g/l account correctly.
+      002   08.12.2006   KKE   -For the Type = Item, The Purchase Account and Direct Cost Account is not showed.
+                               -Add column Shortcut Dimension 2 Code (Department).
+      003   25.09.2007   KKE   -add criteria to group data by description. (request by p'Nok)
+    }
+    END.
+  }
+  RDLDATA
+  {
+  }
+}
+

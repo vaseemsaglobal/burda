@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="Report 2107627037 - Control 4255169883 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ž¯‘ŽÕŠ©Š‡³Ð (Heading Print)</source>
+          <target>Ž¯‘ŽÕŠ©Š‡³Ð (Heading Print)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control HeadingPrint - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 2856405326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;Êº¯‰š¨š‘¿Ð­’ÊóÒ­íº‡¹‰š®“ºÊ•³Ò’º¬³ŽÌŠ‰¹¡­…Ê•ó‡³Ð&gt;</source>
+          <target>&lt;Êº¯‰š¨š‘¿Ð­’ÊóÒ­íº‡¹‰š®“ºÊ•³Ò’º¬³ŽÌŠ‰¹¡­…Ê•ó‡³Ð&gt;</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control ÊºššÐÊóÒíºšºÊÒºŽÌŠÊóÐ - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 238979451 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>¿®‰—‰Êº¯‰</source>
+          <target>¿®‰—‰Êº¯‰</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control PFundAmt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 3851462717 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Êº¯‰š‘‡ŠÊóÒ­íº‡¹‰‹“¨í©‰š©ºñ‘ ¿®‰—‰Êº¯‰</source>
+          <target>Êº¯‰š‘‡ŠÊóÒ­íº‡¹‰‹“¨í©‰š©ºñ‘ ¿®‰—‰Êº¯‰</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control SocialAmt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 3391915368 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ê•ó‡³ÐŠ©¡¬³‰­’¿Ò­º</source>
+          <target>Ê•ó‡³ÐŠ©¡¬³‰­’¿Ò­º</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control EmployerAccount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 3132871794 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ê•ó‡³ÐŠ©…“‹“¨í©‰š©ºñ‘ óºŒ¾Ò†¾í›©í­™³ ‚ ‡³Ð¿Ð­’</source>
+          <target>Ê•ó‡³ÐŠ©…“‹“¨í©‰š©ºñ‘ óºŒ¾Ò†¾í›©í­™³ ‚ ‡³Ð¿Ð­’</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control SocialID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 2877832411 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Œ¾Ò¿Ð­’Êº¯‰</source>
+          <target>Œ¾Ò¿Ð­’Êº¯‰</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control PaymentOption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2107627037 - Control 2877832411 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>›©í­™³ ‚ ‡³Ð¿Ð­’,í­™³Ì›Ò…•„Í‹,í­™³Ì›Òñ“©ÒºÊ„³’—,¸Ð‰µ Ì›Ò“¨Š¹................</source>
+          <target>›©í­™³ ‚ ‡³Ð¿Ð­’,í­™³Ì›Ò…•„Í‹,í­™³Ì›Òñ“©ÒºÊ„³’—,¸Ð‰µ Ì›Ò“¨Š¹................</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report FORM 50 BIS - Control PaymentOption - Property OptionCaption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

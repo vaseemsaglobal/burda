@@ -1,0 +1,315 @@
+OBJECT Form 50007 Subscriber Promotion
+{
+  OBJECT-PROPERTIES
+  {
+    Date=08/11/11;
+    Time=11:52:14 AM;
+    Version List=Burda1.00;
+  }
+  PROPERTIES
+  {
+    Width=16170;
+    Height=8690;
+    SourceTable=Table50004;
+    OnAfterGetCurrRecord=BEGIN
+                           SetEditable;
+                         END;
+
+  }
+  CONTROLS
+  {
+    { 1000000000;TabControl;220;220 ;15730;7370 ;HorzGlue=Both;
+                                                 VertGlue=Both;
+                                                 PageNamesML=ENU=General,Discount,Premium,Free Magazine }
+    { 1000000001;TextBox;3850 ;990  ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="No.";
+                                                 OnAssistEdit=BEGIN
+                                                                IF AssistEdit(xRec) THEN
+                                                                  CurrForm.UPDATE;
+                                                              END;
+                                                               }
+    { 1000000002;Label  ;440  ;990  ;3300 ;440  ;ParentControl=1000000001 }
+    { 1000000003;TextBox;3850 ;1650 ;5500 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr=Description }
+    { 1000000004;Label  ;440  ;1650 ;3300 ;440  ;ParentControl=1000000003 }
+    { 1000000005;TextBox;3850 ;2200 ;1700 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Start Date" }
+    { 1000000006;Label  ;440  ;2200 ;3300 ;440  ;ParentControl=1000000005 }
+    { 1000000007;TextBox;3850 ;2750 ;1700 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="End Date" }
+    { 1000000008;Label  ;440  ;2750 ;3300 ;440  ;ParentControl=1000000007 }
+    { 1000000009;TextBox;3850 ;3410 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Limitation Quantity" }
+    { 1000000010;Label  ;440  ;3410 ;3300 ;440  ;ParentControl=1000000009 }
+    { 1000000011;TextBox;3850 ;3960 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Magazine Item Code" }
+    { 1000000012;Label  ;440  ;3960 ;3300 ;440  ;ParentControl=1000000011 }
+    { 1000000013;TextBox;12980;3850 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Promotion Type";
+                                                 OnAfterValidate=BEGIN
+                                                                   SetEditable;
+                                                                 END;
+                                                                  }
+    { 1000000014;Label  ;9570 ;3850 ;3300 ;440  ;ParentControl=1000000013 }
+    { 1000000015;TextBox;12980;990  ;1700 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Promotion Date" }
+    { 1000000016;Label  ;9570 ;990  ;3300 ;440  ;ParentControl=1000000015 }
+    { 1000000017;TextBox;3850 ;4510 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Magazine Code" }
+    { 1000000018;Label  ;440  ;4510 ;3300 ;440  ;ParentControl=1000000017 }
+    { 1000000019;TextBox;3850 ;5060 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Volume No." }
+    { 1000000020;Label  ;440  ;5060 ;3300 ;440  ;ParentControl=1000000019 }
+    { 1000000021;TextBox;3850 ;5610 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Issue No." }
+    { 1000000022;Label  ;440  ;5610 ;3300 ;440  ;ParentControl=1000000021 }
+    { 1000000023;TextBox;3850 ;6160 ;1700 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Issue Date" }
+    { 1000000024;Label  ;440  ;6160 ;3300 ;440  ;ParentControl=1000000023 }
+    { 1000000068;PictureBox;6710;990;440  ;440  ;Focusable=No;
+                                                 ParentControl=1000000000;
+                                                 InPage=0;
+                                                 ShowCaption=No;
+                                                 Border=No;
+                                                 BitmapPos=Center;
+                                                 BitmapList=7,6;
+                                                 SourceExpr=Comment }
+    { 1000000069;CommandButton;6710;990;440;440 ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 ShowCaption=No;
+                                                 BackTransparent=Yes;
+                                                 PushAction=RunObject;
+                                                 ToolTipML=[ENU=Comment;
+                                                            THA=ข้อคิดเห็น];
+                                                 RunObject=Form 124;
+                                                 RunFormLinkType=OnUpdate;
+                                                 RunFormLink=Table Name=CONST(Promotion),
+                                                             No.=FIELD(No.) }
+    { 1000000062;TextBox;12980;1650 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Promotion Duration" }
+    { 1000000073;Label  ;9570 ;1650 ;3300 ;440  ;ParentControl=1000000062 }
+    { 1000000074;TextBox;12980;2200 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Promotion Price" }
+    { 1000000075;Label  ;9570 ;2200 ;3300 ;440  ;ParentControl=1000000074 }
+    { 1000000077;TextBox;12980;2750 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Promotion Quantity" }
+    { 1000000078;Label  ;9570 ;2750 ;3300 ;440  ;ParentControl=1000000077 }
+    { 1000000079;TextBox;12980;3300 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=0;
+                                                 SourceExpr="Promotion Net Price" }
+    { 1000000080;Label  ;9570 ;3300 ;3300 ;440  ;ParentControl=1000000079 }
+    { 1000000025;TextBox;3850 ;990  ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Discount Type" }
+    { 1000000026;Label  ;440  ;990  ;3300 ;440  ;ParentControl=1000000025 }
+    { 1000000027;TextBox;3850 ;1540 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Discount Value" }
+    { 1000000028;Label  ;440  ;1540 ;3300 ;440  ;ParentControl=1000000027 }
+    { 1000000029;TextBox;3850 ;2090 ;5500 ;440  ;ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Credit Card Bank" }
+    { 1000000030;Label  ;440  ;2090 ;3300 ;440  ;ParentControl=1000000029 }
+    { 1000000031;TextBox;3850 ;2750 ;2750 ;440  ;Editable=No;
+                                                 ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Promotion Duration" }
+    { 1000000032;Label  ;440  ;2750 ;3300 ;440  ;ParentControl=1000000031 }
+    { 1000000033;TextBox;3850 ;3300 ;2750 ;440  ;Editable=No;
+                                                 ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Promotion Price" }
+    { 1000000034;Label  ;440  ;3300 ;3300 ;440  ;ParentControl=1000000033 }
+    { 1000000035;TextBox;3850 ;3850 ;2750 ;440  ;Editable=No;
+                                                 ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Promotion Quantity" }
+    { 1000000036;Label  ;440  ;3850 ;3300 ;440  ;ParentControl=1000000035 }
+    { 1000000037;TextBox;3850 ;4510 ;2750 ;440  ;Editable=No;
+                                                 ParentControl=1000000000;
+                                                 InPage=1;
+                                                 SourceExpr="Promotion Net Price" }
+    { 1000000038;Label  ;440  ;4510 ;3300 ;440  ;ParentControl=1000000037 }
+    { 1000000039;CheckBox;3850;990  ;440  ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 ShowCaption=No;
+                                                 SourceExpr="Premium Flag";
+                                                 OnAfterValidate=BEGIN
+                                                                   SetEditable;
+                                                                 END;
+                                                                  }
+    { 1000000041;TextBox;3850 ;1540 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Item 1" }
+    { 1000000042;Label  ;440  ;1540 ;3300 ;440  ;ParentControl=1000000041 }
+    { 1000000043;TextBox;3850 ;2090 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Item 2" }
+    { 1000000044;Label  ;440  ;2090 ;3300 ;440  ;ParentControl=1000000043 }
+    { 1000000045;TextBox;3850 ;2640 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Item 3" }
+    { 1000000046;Label  ;440  ;2640 ;3300 ;440  ;ParentControl=1000000045 }
+    { 1000000047;TextBox;3850 ;3190 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Item 4" }
+    { 1000000048;Label  ;440  ;3190 ;3300 ;440  ;ParentControl=1000000047 }
+    { 1000000049;TextBox;3850 ;3740 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Item 5" }
+    { 1000000050;Label  ;440  ;3740 ;3300 ;440  ;ParentControl=1000000049 }
+    { 1000000051;TextBox;12980;1540 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Quantity 1" }
+    { 1000000052;Label  ;9570 ;1540 ;3300 ;440  ;ParentControl=1000000051 }
+    { 1000000053;TextBox;12980;2090 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Quantity 2" }
+    { 1000000054;Label  ;9570 ;2090 ;3300 ;440  ;ParentControl=1000000053 }
+    { 1000000055;TextBox;12980;2640 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Quantity 3" }
+    { 1000000056;Label  ;9570 ;2640 ;3300 ;440  ;ParentControl=1000000055 }
+    { 1000000057;TextBox;12980;3190 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Quantity 4" }
+    { 1000000058;Label  ;9570 ;3190 ;3300 ;440  ;ParentControl=1000000057 }
+    { 1000000059;TextBox;12980;3740 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 SourceExpr="Premium Quantity 5" }
+    { 1000000060;Label  ;9570 ;3740 ;3300 ;440  ;ParentControl=1000000059 }
+    { 1000000040;Label  ;440  ;990  ;3300 ;440  ;ParentControl=1000000000;
+                                                 InPage=2;
+                                                 FontSize=10;
+                                                 FontBold=Yes;
+                                                 FontItalic=Yes;
+                                                 FontUnderline=Yes;
+                                                 LeaderDots=No;
+                                                 CaptionML=ENU=Premium }
+    { 1000000061;CheckBox;3850;990  ;440  ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 ShowCaption=No;
+                                                 SourceExpr="Free Magazine Flag";
+                                                 OnAfterValidate=BEGIN
+                                                                   SetEditable;
+                                                                 END;
+                                                                  }
+    { 1000000063;TextBox;3850 ;1540 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 SourceExpr="Free Magazine Code" }
+    { 1000000064;Label  ;440  ;1540 ;3300 ;440  ;ParentControl=1000000063 }
+    { 1000000065;TextBox;3850 ;2090 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 SourceExpr="Free Magazine Quantity" }
+    { 1000000066;Label  ;440  ;2090 ;3300 ;440  ;ParentControl=1000000065 }
+    { 1000000072;Label  ;440  ;990  ;3300 ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 FontSize=10;
+                                                 FontBold=Yes;
+                                                 FontItalic=Yes;
+                                                 FontUnderline=Yes;
+                                                 LeaderDots=No;
+                                                 CaptionML=ENU=Free Magazine }
+    { 1000000081;TextBox;3850 ;3520 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 SourceExpr="Free Other Magazine Code" }
+    { 1000000082;Label  ;440  ;3520 ;3300 ;440  ;ParentControl=1000000081 }
+    { 1000000084;TextBox;3850 ;4070 ;2750 ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 SourceExpr="Free Other Magazine Quantity" }
+    { 1000000083;Label  ;440  ;4070 ;3300 ;440  ;ParentControl=1000000084 }
+    { 1000000085;Label  ;440  ;2970 ;3850 ;440  ;ParentControl=1000000000;
+                                                 InPage=3;
+                                                 FontSize=10;
+                                                 FontBold=Yes;
+                                                 FontItalic=Yes;
+                                                 FontUnderline=Yes;
+                                                 LeaderDots=No;
+                                                 CaptionML=ENU=Free Other Magazine }
+    { 1000000067;CommandButton;13750;7810;2200;550;
+                                                 HorzGlue=Right;
+                                                 VertGlue=Bottom;
+                                                 PushAction=FormHelp }
+    { 1000000070;MenuButton;11330;7810;2200;550 ;HorzGlue=Right;
+                                                 VertGlue=Bottom;
+                                                 CaptionML=[ENU=&Promotion;
+                                                            THA=&โปรโมชั่น];
+                                                 Menu=MENUITEMS
+                                                 {
+                                                   { ID=1000000071;
+                                                     PushAction=LookupTable;
+                                                     ShortCutKey=F5;
+                                                     CaptionML=[ENU=List;
+                                                                THA=รายการ] }
+                                                   { ID=1000000076;
+                                                     PushAction=RunObject;
+                                                     CaptionML=[ENU=Co&mments;
+                                                                THA=ข้อ&คิดเห็น];
+                                                     RunObject=Form 124;
+                                                     RunFormLinkType=OnUpdate;
+                                                     RunFormLink=Table Name=CONST(Promotion),
+                                                                 No.=FIELD(No.) }
+                                                 }
+                                                  }
+  }
+  CODE
+  {
+
+    PROCEDURE SetEditable@1000000000();
+    VAR
+      EditDisc@1000000000 : Boolean;
+      EditPremium@1000000001 : Boolean;
+    BEGIN
+      EditDisc := "Promotion Type" IN ["Promotion Type"::Discount,"Promotion Type"::Both];
+      CurrForm."Discount Type".EDITABLE := EditDisc;
+      CurrForm."Discount Value".EDITABLE := EditDisc;
+      CurrForm."Credit Card Bank".EDITABLE := EditDisc;
+      EditPremium := "Promotion Type" IN ["Promotion Type"::Premium,"Promotion Type"::Both];
+      CurrForm."Premium Flag".EDITABLE := EditPremium;
+      CurrForm."Premium Item 1".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Item 2".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Item 3".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Item 4".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Item 5".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Quantity 1".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Quantity 2".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Quantity 3".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Quantity 4".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Premium Quantity 5".EDITABLE := EditPremium AND "Premium Flag";
+      CurrForm."Free Magazine Flag".EDITABLE := EditPremium;
+      CurrForm."Free Magazine Code".EDITABLE := EditPremium AND "Free Magazine Flag";
+      CurrForm."Free Magazine Quantity".EDITABLE := EditPremium AND "Free Magazine Flag";
+      CurrForm."Free Other Magazine Code".EDITABLE := EditPremium AND "Free Magazine Flag";
+      CurrForm."Free Other Magazine Quantity".EDITABLE := EditPremium AND "Free Magazine Flag";
+    END;
+
+    BEGIN
+    {
+      Microsoft Business Solutions Navision
+      ----------------------------------------
+      Project: Burda (Thailand) Co., Ltd
+      KKE : Kanoknard Ketnut
+
+      No.   Date         Sign  Description
+      ----------------------------------------
+      001   07.03.2007   KKE   New Form for Promotion Card.
+    }
+    END.
+  }
+}
+

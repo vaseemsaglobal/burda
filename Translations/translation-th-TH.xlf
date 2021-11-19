@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="th-TH" original="Please update this value">
+    <body>
+      <group id="body">
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 2969163710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remark</source>
+          <target>หมายเหตุ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Remark - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4181767958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application</source>
+          <target>การใช้</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Application - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 2969163710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remark</source>
+          <target>หมายเหตุ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Remark - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4181767958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application</source>
+          <target>การใช้</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Application - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 2969163710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remark</source>
+          <target>หมายเหตุ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Remark - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2269973469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get Li&amp;ne Discount</source>
+          <target>เรียกส่วนลด&amp;ในบรรทัด</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Get Li&amp;ne Discount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2302070540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert &amp;Ext. Texts</source>
+          <target>แทรกข้อความที่&amp;ขยายเพิ่มเติม</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Insert &amp;Ext. Texts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2018581010 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Reserve</source>
+          <target>&amp;สำรอง</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change &amp;Reserve - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1673074985 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order &amp;Tracking</source>
+          <target>การ&amp;ติดตามใบสั่ง</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Order &amp;Tracking - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3696516953 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Nonstoc&amp;k Items</source>
+          <target>สินค้าที่&amp;ไม่มีในสต็อก</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Nonstoc&amp;k Items - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4050668175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get &amp;Price</source>
+          <target>&amp;ขอราคา</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Get &amp;Price - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2269973469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get Li&amp;ne Discount</source>
+          <target>เรียกส่วนลด&amp;ในบรรทัด</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Get Li&amp;ne Discount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2302070540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert &amp;Ext. Texts</source>
+          <target>แทรกข้อความที่&amp;ขยายเพิ่มเติม</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Insert &amp;Ext. Texts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target>ทั่งไป</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4181767958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application</source>
+          <target>การใช้</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Application - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4181767958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application</source>
+          <target>การใช้</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Application - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1344672713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Print</source>
+          <target>&amp;พิมพ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action &amp;Print - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2302070540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert &amp;Ext. Texts</source>
+          <target>แทรกข้อความที่&amp;ขยายเพิ่มเติม</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Insert &amp;Ext. Texts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1673074985 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order &amp;Tracking</source>
+          <target>การ&amp;ติดตามใบสั่ง</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Order &amp;Tracking - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2302070540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert &amp;Ext. Texts</source>
+          <target>แทรกข้อความที่&amp;ขยายเพิ่มเติม</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Insert &amp;Ext. Texts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2302070540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert &amp;Ext. Texts</source>
+          <target>แทรกข้อความที่&amp;ขยายเพิ่มเติม</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Insert &amp;Ext. Texts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2302070540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert &amp;Ext. Texts</source>
+          <target>แทรกข้อความที่&amp;ขยายเพิ่มเติม</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Insert &amp;Ext. Texts - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4181767958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Application</source>
+          <target>การใช้</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Application - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 337631938 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User Setup</source>
+          <target>เซ็ตอัพผู้ใช้</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change User Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟั&amp;งก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 2969163710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remark</source>
+          <target>หมายเหตุ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Remark - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1344672713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Print</source>
+          <target>&amp;พิมพ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action &amp;Print - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1450094168 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoicing</source>
+          <target>การออกอินวอยซ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Invoicing - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 2969163710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remark</source>
+          <target>หมายเหตุ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Remark - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1344672713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Print</source>
+          <target>&amp;พิมพ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action &amp;Print - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1450094168 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invoicing</source>
+          <target>การออกอินวอยซ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Invoicing - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่(ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 1143374632 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remaining Amount</source>
+          <target>จำนวนที่เหลือ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control RemainingAmt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 1143374632 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remaining Amount</source>
+          <target>จำนวนคงเหลือ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control RemainingAmt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>&amp;ฟังก์ชั่น</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 336273393 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reset Applies-to ID on Close Entry</source>
+          <target>ยกเลิก ID การใช้ในรายการที่ปิด</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action Reset Applies-to ID on Close Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 652464844" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to reset applies-to id on closed entry?</source>
+          <target>คุณต้องการยกเลิก ID การใช้ในรายการที่ปิดไปแล้วใช่หรือไม่?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType Text50000</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1344672713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Print</source>
+          <target>&amp;พิมพ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action &amp;Print - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1344672713 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Print</source>
+          <target>&amp;พิมพ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action &amp;Print - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1988879396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cancel Post Dated Check</source>
+          <target>ยกเลิกเช็คจ่ายล่วงหน้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Cancel Post Dated Check - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 2201934905 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>P&amp;rint</source>
+          <target>&amp;พิมพ์</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action P&amp;rint - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 14088258" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Successfully Inserted.</source>
+          <target>บันทึกรายการเรียบร้อยแล้ว</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType C_0002</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 3671358937" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WHT Entries does not exists.</source>
+          <target>ไม่พบรายการภาษีหัก ณ ที่จ่าย</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType C_0003</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1642199961 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Source Code Setup</source>
+          <target>เซ็ตอัพรหัสแหล่งที่มา</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Source Code Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2187938695 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service</source>
+          <target>การบริการ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Service - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 887890843 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quote,Blanket Order,Order,Invoice,Work Order,Return Order,Credit Memo,Shipment,Return Receipt,Sales Document - Test,Prepayment Document - Test,Pick Ticket,Tax Invoice - WHT,Tax Credit Memno - WHT</source>
+          <target>ใบเสนอราคา,ใบสั่งแบบรวม,ใบสั่ง,ใบแจ้งหนี้,ใบสั่งงาน,ใบสั่งส่งคืนสินค้า,ใบลดหนี้,ใบจัดส่ง,ใบรับสินค้าส่งคืน,เอกสารการขาย - ทดสอบ,เอกสารการชำระเงินล่วงหน้า - ทดสอบ,ใบเบิกจ่าย,Tax Invoice - WHT,Tax Credit Memno - WHT</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change ReportUsage2 - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1592581304 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calculate</source>
+          <target>คำนวณ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action Calculate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 2395965703" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please specify both Starting Date and Ending Date</source>
+          <target>กรุณาระบุวันที่เริ่มต้น และวันที่ สุดท้าย</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType C_0001</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 14088258" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Invalid Date.</source>
+          <target>วันที่เริ่มต้นและวันที่สุดท้ายไม่ถูกต้อง</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType C_0002</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 392666526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Tracking</source>
+          <target>ติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item Tracking - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 887890843 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quote,Blanket Order,Order,Invoice,Return Order,Credit Memo,Receipt,Return Shipment,Purchase Document - Test,Prepayment Document - Test,WHT Certificate,Tax Invoice,Tax Credit Memo</source>
+          <target>ใบเสนอราคา,ใบสั่งแบบรวม,ใบสั่ง,ใบแจ้งหนี้,ใบสั่งส่งคืนสินค้า,ใบลดหนี้,ใบรับ,ใบจัดส่งคืนสินค้า,เอกสารการซื้อ - ทดสอบ,เอกสารการชำระเงินล่วงหน้า - ทดสอบ,หนังสือรับรอง WHT,ใบกำกับภาษี - WHT,บันทึกสินเชื่อภาษี - WHT</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change ReportUsage2 - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4224198349 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transfer</source>
+          <target>การโอนย้าย</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Transfer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;Sign&gt;&lt;Integer Thousand&gt;&lt;Decimals,2&gt;</source>
+          <target>&lt;Sign&gt;&lt;Integer Thousand&gt;&lt;Decimals,2&gt;</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType Text000</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 4145206282 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales &amp; Receivables Setup</source>
+          <target>เซ็ตอัพบัญชียอดขาย &amp; ค้างรับ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Sales &amp; Receivables Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2471913271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Dated Checks</source>
+          <target>เช็คสั่งจ่ายล่วงหน้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Post Dated Checks - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3921990236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchases &amp; Payables Setup</source>
+          <target>เซ็ตอัพบัญชีเจ้าหนี้ &amp; การซื้อ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Purchases &amp; Payables Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2471913271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Dated Checks</source>
+          <target>เช็คสั่งจ่ายล่วงหน้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Post Dated Checks - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3237504299 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Setup</source>
+          <target>&amp;เซ็ตอัพ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change &amp;Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;Sign&gt;&lt;Integer Thousand&gt;&lt;Decimals,2&gt;</source>
+          <target>&lt;Sign&gt;&lt;Integer Thousand&gt;&lt;Decimals,2&gt;</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - NamedType Text001</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1236721926 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Synchronization</source>
+          <target>การปรับเวลาให้ตรงกัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Synchronization - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 2113023220 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Burda</source>
+          <target>Burda</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Burda - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3354609708 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>FA Posting Type Setup</source>
+          <target>เซ็ตอัพชนิดการลงรายการบัญชี FA</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change FA Posting Type Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2945268841 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>FA &amp;Journal Setup</source>
+          <target>เซ็ตอัพ&amp;สมุดรายวัน FA</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change FA &amp;Journal Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 2830186940 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Main &amp;Asset Statistics</source>
+          <target>ส&amp;ถิติสินทรัพย์หลัก</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Main &amp;Asset Statistics - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>Address (Thai)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3106002577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>F&amp;unctions</source>
+          <target>ฟัง&amp;ก์ชัน</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change F&amp;unctions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1673074985 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order &amp;Tracking</source>
+          <target>การติดตาม&amp;ใบสั่ง</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Order &amp;Tracking - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3470782150 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Charge &amp;Assignment</source>
+          <target>การกำหนดค่าธรรมเนียม&amp;สินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item Charge &amp;Assignment - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 1621753147 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item &amp;Tracking Lines</source>
+          <target>บรรทัด&amp;การติดตามสินค้า</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change Item &amp;Tracking Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>Address (Thai)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่ (ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3581952269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address (Thai)</source>
+          <target>ที่อยู่ (ไทย)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Address (Thai) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Change 3237504299 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Setup</source>
+          <target>&amp;เซ็ตอัพ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Change &amp;Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 828292189 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Option</source>
+          <target>ออพชั่น</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control Option - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3655110311 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WHT Report</source>
+          <target>รายงานภาษีหัก ณ ที่จ่าย</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control WHTReportFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 1021228577 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WHT Certificate No.</source>
+          <target>เลขที่ใบรับรองหักภาษี ณ ที่จ่าย</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control WHTCertificateNoFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3755869650 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target>เลขที่เอกสาร</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control DocumentNoFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 543275552 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starting Date</source>
+          <target>วันเริ่มต้น</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control StartingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Control 3592094765 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ending Date</source>
+          <target>วันสิ้นสุด</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Control EndingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 1405007275 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Navigate</source>
+          <target>&amp;นำทางข้อมูล</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action &amp;Navigate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3234461526 - Action 2101672685 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fi&amp;nd</source>
+          <target>ค้นหา</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension pageextension0 - Action Fi&amp;nd - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

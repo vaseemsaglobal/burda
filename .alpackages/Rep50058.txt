@@ -1,0 +1,376 @@
+OBJECT Report 50058 Ads. Billing Note
+{
+  OBJECT-PROPERTIES
+  {
+    Date=06/17/09;
+    Time=[ 4:32:58 PM];
+    Version List=Burda1.00;
+  }
+  PROPERTIES
+  {
+    TopMargin=500;
+    BottomMargin=1000;
+    LeftMargin=1000;
+    HorzGrid=100;
+    VertGrid=100;
+  }
+  DATAITEMS
+  {
+    { PROPERTIES
+      {
+        DataItemTable=Table50050;
+        NewPagePerRecord=Yes;
+        OnPreDataItem=BEGIN
+                        CompanyInfo.GET;
+                        CompanyInfo.CALCFIELDS(Picture);
+                        FormatAddr.Company(CompanyAddr,CompanyInfo);
+                        IF CompanyInfo."Company Name (Thai)" = '' THEN
+                          CompanyInfo."Company Name (Thai)" := CompanyInfo.Name + CompanyInfo."Name 2";
+                        tmpCompanyAddrTH[1] := CompanyInfo."Company Address (Thai)";
+                        tmpCompanyAddrTH[2] := CompanyInfo."Address 3";
+                        tmpCompanyAddr[1] := CompanyAddr[2] + ' ' + CompanyAddr[3] + ' ' + CompanyAddr[4];
+                        tmpCompanyAddr[2] := CompanyInfo."Address 3";
+                      END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Header;
+            PrintOnEveryPage=Yes;
+            SectionWidth=19230;
+            SectionHeight=4595;
+          }
+          CONTROLS
+          {
+            { 1000000000;TextBox;241  ;0    ;9800 ;800  ;FontSize=11;
+                                                         FontBold=Yes;
+                                                         SourceExpr=CompanyInfo."Company Name (Thai)" }
+            { 1000000003;TextBox;241  ;800  ;13400;500  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr=tmpCompanyAddrTH[1] + ' ' + tmpCompanyAddrTH[2] }
+            { 1000000004;TextBox;241  ;1300 ;13400;500  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr=tmpCompanyAddr[1] + ' ' + tmpCompanyAddr[2] }
+            { 1000000006;TextBox;241  ;1800 ;12180;500  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr='Tel : ' + CompanyInfo."Phone No." + '    Fax : ' + CompanyInfo."Fax No." }
+            { 1000000018;TextBox;14900;2470 ;4300 ;630  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr="Ads. Billing Header"."No." }
+            { 1000000016;Label  ;13500;2470 ;1200 ;630  ;HorzAlign=Right;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=เลขที่ }
+            { 1000000021;TextBox;1400 ;3070 ;11700;630  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr="Ads. Billing Header"."Bill-to Customer No." + ' ' + "Ads. Billing Header"."Bill-to Name" + "Ads. Billing Header"."Bill-to Name 2" }
+            { 1000000035;Label  ;13500;3070 ;1200 ;630  ;HorzAlign=Right;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=วันที่ }
+            { 1000000036;TextBox;14900;3070 ;3600 ;630  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr="Ads. Billing Header"."Billing Date" }
+            { 1000000002;Label  ;0    ;3070 ;1300 ;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=ชื่อลูกค้า }
+            { 1000000001;Label  ;6000 ;2400 ;5950 ;700  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=18;
+                                                         FontBold=Yes;
+                                                         CaptionML=ENU=ใบวางบิล }
+            { 1000000007;Shape  ;0    ;3800 ;19200;30   ;ShapeStyle=HorzLine }
+            { 1000000009;Shape  ;0    ;4565 ;19200;30   ;ShapeStyle=HorzLine }
+            { 1000000010;Label  ;500  ;3900 ;1600 ;630  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=ลำดับที่ }
+            { 1000000012;Label  ;2900 ;3900 ;6100 ;630  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=ใบแจ้งหนี้เลขที่ }
+            { 1000000013;Label  ;10500;3900 ;2900 ;630  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=วันที่ }
+            { 1000000015;Label  ;14700;3900 ;3900 ;630  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=จำนวนเงิน }
+            { 1000000017;Shape  ;0    ;3815 ;30   ;780  ;ShapeStyle=VertLine }
+            { 1000000019;Shape  ;2600 ;3815 ;30   ;780  ;ShapeStyle=VertLine }
+            { 1000000020;Shape  ;9900 ;3815 ;30   ;780  ;ShapeStyle=VertLine }
+            { 1000000022;Shape  ;13800;3815 ;30   ;780  ;ShapeStyle=VertLine }
+            { 1000000023;Shape  ;19200;3815 ;30   ;780  ;ShapeStyle=VertLine }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=1;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number)
+                          WHERE(Number=CONST(1));
+        OnAfterGetRecord=BEGIN
+                           i := 0;
+                           CntLine := 0;
+                           TotalAmount := 0;
+                           TotalAmountText := '';
+                         END;
+
+      }
+      SECTIONS
+      {
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=2;
+        DataItemTable=Table50051;
+        DataItemTableView=SORTING(Billing No.,Line No.)
+                          WHERE(Billing Amount=FILTER(<>0));
+        OnPreDataItem=BEGIN
+                        IF "Ads. Billing Line".FIND('-') THEN
+                          IF NOT CurrReport.PREVIEW THEN BEGIN
+                            "Ads. Billing Header".Status := "Ads. Billing Header".Status::Release;
+                            "Ads. Billing Header".MODIFY;
+                          END;
+                      END;
+
+        OnAfterGetRecord=BEGIN
+                           i += 1;
+                           CntLine += 1;
+                         END;
+
+        TotalFields=Billing Amount;
+        DataItemLinkReference=Ads. Billing Header;
+        DataItemLink=Billing No.=FIELD(No.);
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19230;
+            SectionHeight=500;
+          }
+          CONTROLS
+          {
+            { 1000000008;TextBox;2900 ;0    ;4500 ;500  ;HorzAlign=Left;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr="Document No." }
+            { 1000000011;TextBox;10500;0    ;2900 ;500  ;Visible=Yes;
+                                                         HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr="Due Date" }
+            { 1000000014;TextBox;14700;0    ;3900 ;500  ;HorzAlign=Right;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr="Billing Amount" }
+            { 1000000025;Shape  ;19200;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000027;Shape  ;13800;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000029;Shape  ;9900 ;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000031;Shape  ;2600 ;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000033;Shape  ;0    ;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000034;TextBox;500  ;0    ;1600 ;500  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         SourceExpr=i }
+          }
+           }
+        { PROPERTIES
+          {
+            SectionType=TransFooter;
+            SectionWidth=19230;
+            SectionHeight=500;
+            OnPreSection=BEGIN
+                           IF CurrReport.SHOWOUTPUT THEN
+                             CntLine := 1;
+                         END;
+
+          }
+          CONTROLS
+          {
+            { 1000000037;Shape  ;0    ;0    ;19200;30   ;ShapeStyle=HorzLine }
+            { 1000000053;Label  ;15400;0    ;3700 ;500  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=Continue... }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=2;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number);
+        DataItemVarName=LineSpace;
+        OnPreDataItem=BEGIN
+                        SETRANGE(Number,1,8-CntLine);
+                      END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19230;
+            SectionHeight=500;
+          }
+          CONTROLS
+          {
+            { 1000000043;Shape  ;19200;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000044;Shape  ;13800;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000054;Shape  ;9900 ;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000055;Shape  ;2600 ;0    ;30   ;500  ;ShapeStyle=VertLine }
+            { 1000000056;Shape  ;0    ;0    ;30   ;500  ;ShapeStyle=VertLine }
+          }
+           }
+      }
+       }
+    { PROPERTIES
+      {
+        DataItemIndent=2;
+        DataItemTable=Table2000000026;
+        DataItemTableView=SORTING(Number)
+                          WHERE(Number=CONST(1));
+        DataItemVarName=Total;
+        OnAfterGetRecord=BEGIN
+                           TotalAmount := "Ads. Billing Line"."Billing Amount";
+                           TotalAmountText := Form50BIS.FormatNoThaiText(TotalAmount);
+                           IF TotalAmountText <> '' THEN
+                             TotalAmountText := '(' + TotalAmountText + ')';
+                         END;
+
+      }
+      SECTIONS
+      {
+        { PROPERTIES
+          {
+            SectionType=Body;
+            SectionWidth=19230;
+            SectionHeight=830;
+          }
+          CONTROLS
+          {
+            { 1000000028;Shape  ;19200;0    ;30   ;815  ;ShapeStyle=VertLine }
+            { 1000000026;TextBox;14100;0    ;4500 ;800  ;HorzAlign=Right;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=14;
+                                                         FontBold=Yes;
+                                                         BlankZero=Yes;
+                                                         SourceExpr=TotalAmount }
+            { 1000000030;Shape  ;13800;0    ;30   ;815  ;ShapeStyle=VertLine }
+            { 1000000046;TextBox;100  ;0    ;13400;800  ;FontName=CordiaUPC;
+                                                         FontSize=14;
+                                                         FontBold=No;
+                                                         SourceExpr=TotalAmountText }
+            { 1000000032;Shape  ;15   ;800  ;19200;30   ;ShapeStyle=HorzLine }
+            { 1000000038;Shape  ;0    ;0    ;30   ;815  ;ShapeStyle=VertLine }
+            { 1000000024;Shape  ;15   ;0    ;19200;30   ;ShapeStyle=HorzLine }
+          }
+           }
+        { PROPERTIES
+          {
+            SectionType=Footer;
+            SectionWidth=19230;
+            SectionHeight=2730;
+          }
+          CONTROLS
+          {
+            { 1000000039;Label  ;100  ;100  ;13400;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=ได้รับต้นฉบับเอกสารถูกต้องและครบถ้วน ตามรายละเอียดข้างต้นเรียบร้อยแล้ว }
+            { 1000000045;Label  ;100  ;1000 ;1600 ;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=ผู้รับวางบิล }
+            { 1000000047;Label  ;3500 ;1500 ;2000 ;630  ;HorzAlign=Center;
+                                                         FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=(ตัวบรรจง) }
+            { 1000000048;Label  ;1700 ;1000 ;7700 ;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=________________________________________________ }
+            { 1000000049;Label  ;100  ;2100 ;3500 ;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=โปรดมารับชำระเงินในวันที่ }
+            { 1000000050;Label  ;3600 ;2100 ;13900;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=____________________________________________________________________________ }
+            { 1000000051;Label  ;10900;1000 ;4500 ;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=____________________________ }
+            { 1000000052;Label  ;10100;1000 ;800  ;630  ;FontName=CordiaUPC;
+                                                         FontSize=13;
+                                                         CaptionML=ENU=วันที่ }
+          }
+           }
+      }
+       }
+  }
+  REQUESTFORM
+  {
+    PROPERTIES
+    {
+      Width=9020;
+      Height=3410;
+    }
+    CONTROLS
+    {
+    }
+  }
+  REQUESTPAGE
+  {
+    PROPERTIES
+    {
+    }
+    CONTROLS
+    {
+    }
+  }
+  CODE
+  {
+    VAR
+      CompanyInfo@1000000000 : Record 79;
+      Form50BIS@1000000007 : Report 50002;
+      FormatAddr@1000000003 : Codeunit 365;
+      CompanyAddr@1000000005 : ARRAY [8] OF Text[50];
+      tmpCompanyAddr@1000000002 : ARRAY [2] OF Text[250];
+      tmpCompanyAddrTH@1000000001 : ARRAY [2] OF Text[250];
+      i@1000000009 : Integer;
+      CntLine@1000000004 : Integer;
+      TotalAmount@1000000006 : Decimal;
+      TotalAmountText@1000000008 : Text[250];
+
+    BEGIN
+    {
+      Microsoft Business Solutions Navision
+      ----------------------------------------
+      Project: Burda (Thailand) Co., Ltd
+      KKE : Kanoknard Ketnut
+
+      No.   Date         Sign  Description
+      ----------------------------------------
+      001   30.05.2007   KKE   New report for "Ads. Billing Note" - Ads. Sales Module
+    }
+    END.
+  }
+  RDLDATA
+  {
+  }
+}
+

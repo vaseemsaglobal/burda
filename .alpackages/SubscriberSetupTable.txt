@@ -1,0 +1,61 @@
+OBJECT Table 50000 Subscription Setup
+{
+  OBJECT-PROPERTIES
+  {
+    Date=07/02/08;
+    Time=[ 5:02:39 PM];
+    Version List=Burda1.00;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;Primary Key         ;Code10        ;CaptionML=[ENU=Primary Key;
+                                                              THA=คีย์หลัก] }
+    { 2   ;   ;Subscriber Nos.     ;Code10        ;TableRelation="No. Series";
+                                                   CaptionML=[ENU=Subscriber Nos.;
+                                                              THA=ชุดหมายเลขของสมาชิก] }
+    { 3   ;   ;Promotion Nos.      ;Code10        ;TableRelation="No. Series";
+                                                   CaptionML=[ENU=Promotion Nos.;
+                                                              THA=ชุดหมายเลขโปรโมชั่น] }
+    { 4   ;   ;Subscriber Contract Nos.;Code10    ;TableRelation="No. Series" }
+    { 5   ;   ;Deposit Account     ;Code20        ;TableRelation="G/L Account" }
+    { 6   ;   ;Def. Pmt. Method for Delivery;Code10;
+                                                   TableRelation="Payment Method" }
+    { 13  ;   ;Posted Invoice Nos. ;Code10        ;TableRelation="No. Series";
+                                                   CaptionML=[ENU=Posted Invoice Nos.;
+                                                              THA=ชุดหมายเลขใบส่งของที่ลงรายการบัญชี] }
+    { 15  ;   ;Posted Credit Memo Nos.;Code10     ;TableRelation="No. Series";
+                                                   CaptionML=[ENU=Posted Credit Memo Nos.;
+                                                              THA=ชุดหมายเลขใบลดหนี้ที่ลงรายการบัญชี] }
+    { 16  ;   ;Customer Nos.       ;Code10        ;TableRelation="No. Series" }
+    { 20  ;   ;Delivery Location Code;Code10      ;TableRelation=Location }
+    { 21  ;   ;Complaint Nos.      ;Code10        ;TableRelation="No. Series" }
+  }
+  KEYS
+  {
+    {    ;Primary Key                             ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    {
+      Microsoft Business Solutions Navision
+      ----------------------------------------
+      Project: Burda (Thailand) Co., Ltd
+      KKE : Kanoknard Ketnut
+
+      No.   Date         Sign  Description
+      ----------------------------------------
+      001   06.03.2007   KKE   New table for Subscription,Magazine and Ads. Setup.
+      002   02.07.2008   PTH   Add Field "Complaint NOS."
+    }
+    END.
+  }
+}
+

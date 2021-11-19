@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="TotalCrAmount">
+          <DataField>TotalCrAmount</DataField>
+        </Field>
+        <Field Name="TotalCrAmountFormat">
+          <DataField>TotalCrAmountFormat</DataField>
+        </Field>
+        <Field Name="Purch_No">
+          <DataField>Purch_No</DataField>
+        </Field>
+        <Field Name="TotalDrAmount">
+          <DataField>TotalDrAmount</DataField>
+        </Field>
+        <Field Name="TotalDrAmountFormat">
+          <DataField>TotalDrAmountFormat</DataField>
+        </Field>
+        <Field Name="PurDetails">
+          <DataField>PurDetails</DataField>
+        </Field>
+        <Field Name="totalCurrCode">
+          <DataField>totalCurrCode</DataField>
+        </Field>
+        <Field Name="CurrCode">
+          <DataField>CurrCode</DataField>
+        </Field>
+        <Field Name="VendName">
+          <DataField>VendName</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="PayeeName">
+          <DataField>PayeeName</DataField>
+        </Field>
+        <Field Name="DocumentNo">
+          <DataField>DocumentNo</DataField>
+        </Field>
+        <Field Name="PostingDate">
+          <DataField>PostingDate</DataField>
+        </Field>
+        <Field Name="CaptionToday">
+          <DataField>CaptionToday</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Name">
+          <DataField>CompanyInfo_Name</DataField>
+        </Field>
+        <Field Name="CompanyInfo_CompanyNameThai">
+          <DataField>CompanyInfo_CompanyNameThai</DataField>
+        </Field>
+        <Field Name="CompanyInfo_AddressCompanyInfo_Address2">
+          <DataField>CompanyInfo_AddressCompanyInfo_Address2</DataField>
+        </Field>
+        <Field Name="CompanyInfo_Address3CompanyInfo_PostCode">
+          <DataField>CompanyInfo_Address3CompanyInfo_PostCode</DataField>
+        </Field>
+        <Field Name="CompanyInfo_CompanyAddressThai">
+          <DataField>CompanyInfo_CompanyAddressThai</DataField>
+        </Field>
+        <Field Name="CompanyInfo_CompanyAddress2Thai_PostCode">
+          <DataField>CompanyInfo_CompanyAddress2Thai_PostCode</DataField>
+        </Field>
+        <Field Name="TelCompanyInfo_PhoneNoFaxVATRegCompanyInfo_FaxNo">
+          <DataField>TelCompanyInfo_PhoneNoFaxVATRegCompanyInfo_FaxNo</DataField>
+        </Field>
+        <Field Name="CaptionTaxID">
+          <DataField>CaptionTaxID</DataField>
+        </Field>
+        <Field Name="CompanyInfo_VATRegistrationNo">
+          <DataField>CompanyInfo_VATRegistrationNo</DataField>
+        </Field>
+        <Field Name="LineAmountPay">
+          <DataField>LineAmountPay</DataField>
+        </Field>
+        <Field Name="LineAmountPayFormat">
+          <DataField>LineAmountPayFormat</DataField>
+        </Field>
+        <Field Name="Description_ExternalDocumentNo">
+          <DataField>Description_ExternalDocumentNo</DataField>
+        </Field>
+        <Field Name="VATAmtTmp">
+          <DataField>VATAmtTmp</DataField>
+        </Field>
+        <Field Name="VATAmtTmpFormat">
+          <DataField>VATAmtTmpFormat</DataField>
+        </Field>
+        <Field Name="GoodService">
+          <DataField>GoodService</DataField>
+        </Field>
+        <Field Name="GoodServiceFormat">
+          <DataField>GoodServiceFormat</DataField>
+        </Field>
+        <Field Name="total">
+          <DataField>total</DataField>
+        </Field>
+        <Field Name="totalFormat">
+          <DataField>totalFormat</DataField>
+        </Field>
+        <Field Name="WHTAmtHeader">
+          <DataField>WHTAmtHeader</DataField>
+        </Field>
+        <Field Name="WHTAmtHeaderFormat">
+          <DataField>WHTAmtHeaderFormat</DataField>
+        </Field>
+        <Field Name="DebitAmountNumber">
+          <DataField>DebitAmountNumber</DataField>
+        </Field>
+        <Field Name="DebitAmountNumberFormat">
+          <DataField>DebitAmountNumberFormat</DataField>
+        </Field>
+        <Field Name="DebitAccNoNumber">
+          <DataField>DebitAccNoNumber</DataField>
+        </Field>
+        <Field Name="DebitAccNameNumber">
+          <DataField>DebitAccNameNumber</DataField>
+        </Field>
+        <Field Name="DebitVATNameNumber">
+          <DataField>DebitVATNameNumber</DataField>
+        </Field>
+        <Field Name="DebitVATAmtNumber">
+          <DataField>DebitVATAmtNumber</DataField>
+        </Field>
+        <Field Name="DebitVATAmtNumberFormat">
+          <DataField>DebitVATAmtNumberFormat</DataField>
+        </Field>
+        <Field Name="Dim2">
+          <DataField>Dim2</DataField>
+        </Field>
+        <Field Name="Dim1">
+          <DataField>Dim1</DataField>
+        </Field>
+        <Field Name="CrAmounts">
+          <DataField>CrAmounts</DataField>
+        </Field>
+        <Field Name="CrAmountsFormat">
+          <DataField>CrAmountsFormat</DataField>
+        </Field>
+        <Field Name="CreditAccNameNumber">
+          <DataField>CreditAccNameNumber</DataField>
+        </Field>
+        <Field Name="CreditVATNameNumber">
+          <DataField>CreditVATNameNumber</DataField>
+        </Field>
+        <Field Name="CreditWHTAmt">
+          <DataField>CreditWHTAmt</DataField>
+        </Field>
+        <Field Name="CreditWHTAmtFormat">
+          <DataField>CreditWHTAmtFormat</DataField>
+        </Field>
+        <Field Name="CreditVATNoNumber">
+          <DataField>CreditVATNoNumber</DataField>
+        </Field>
+        <Field Name="CreditAccNoNumber">
+          <DataField>CreditAccNoNumber</DataField>
+        </Field>
+        <Field Name="CreditVATAmtNumber">
+          <DataField>CreditVATAmtNumber</DataField>
+        </Field>
+        <Field Name="CreditAmountNumber">
+          <DataField>CreditAmountNumber</DataField>
+        </Field>
+        <Field Name="WHTAccountName">
+          <DataField>WHTAccountName</DataField>
+        </Field>
+        <Field Name="WHTAccountNo">
+          <DataField>WHTAccountNo</DataField>
+        </Field>
+        <Field Name="WHTAmt">
+          <DataField>WHTAmt</DataField>
+        </Field>
+        <Field Name="WHTAmtFormat">
+          <DataField>WHTAmtFormat</DataField>
+        </Field>
+        <Field Name="Number_LineLoop">
+          <DataField>Number_LineLoop</DataField>
+        </Field>
+        <Field Name="TextAmount1">
+          <DataField>TextAmount1</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
